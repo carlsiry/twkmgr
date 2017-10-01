@@ -5,13 +5,32 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MdToolbarModule, MdIconModule, MdButtonModule, MdInputModule, MdCardModule } from '@angular/material';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MdToolbarModule,
+    MdIconModule,
+    MdButtonModule,
+    MdInputModule,
+    MdCardModule
   ],
   exports: [
-    CommonModule
+    CommonModule,
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MdToolbarModule,
+    MdIconModule,
+    MdButtonModule,
+    MdInputModule,
+    MdCardModule
   ],
   declarations: []
 })
