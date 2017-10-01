@@ -8,12 +8,17 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Output() toggle = new EventEmitter<void>();
+  @Output() toggleDarkTheme = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit() {
   }
   openSidenav() {
     this.toggle.emit();
+  }
+  triggleDarkTheme(checked: boolean) {
+    console.log(checked);
+    this.toggleDarkTheme.emit(checked);
   }
 
 }
