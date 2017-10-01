@@ -13,4 +13,6 @@ a { text-decoration: none; color: #3f51b5;}
 }
 main {
     flex: 1;
+    background: url("assets/img/quote_fallback.jpg");
+    background-size: cover;
 }
