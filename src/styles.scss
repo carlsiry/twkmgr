@@ -22,3 +22,11 @@ main {
 .fill-remaining-space {
     flex: 1 1 auto;
 }
+
+.field-full-width {
+    width: 100%;
+}
+.text-right {
+    margin: 10px;
+    text-align: end;
+}

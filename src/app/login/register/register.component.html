@@ -1,0 +1,28 @@
+<form class="register-form">
+    <md-card class="register-form__card">
+        <md-card-header>
+          <md-card-title>注册：</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <md-form-field class="field-full-width">
+              <input mdInput placeholder="亲输入您邮箱地址" type="email">
+            </md-form-field>
+            <md-form-field class="field-full-width">
+              <input mdInput placeholder="亲输入您的密码" type="password">
+            </md-form-field>
+            <md-form-field class="field-full-width">
+              <input mdInput placeholder="亲再次输入密码" type="password">
+            </md-form-field>
+            <md-grid-list cols="6">
+              <md-grid-tile *ngFor="let item of items">
+                <md-icon [svgIcon]="item" class="avatar"></md-icon>
+              </md-grid-tile>
+            </md-grid-list>
+            <button md-raised-button class="field-full-width" color="accent" type="button">注册</button>
+        </md-card-content>
+        <md-card-actions class="text-right">
+          <p class="login-form__tip">已经有账户？<a href="#">登录</a></p>
+          <p class="login-form__tip">忘记密码？<a href="#">找回</a></p>
+        </md-card-actions>
+    </md-card>   
+  </form>
