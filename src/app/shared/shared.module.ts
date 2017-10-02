@@ -7,8 +7,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule, MdButtonModule,
-  MdInputModule, MdCardModule, MdGridListModule, MdDialogModule, MdAutocompleteModule} from '@angular/material';
+import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule, 
+  MdButtonModule, MdInputModule, MdCardModule, MdGridListModule, MdDialogModule,
+  MdAutocompleteModule, MdMenuModule, MdCheckboxModule, MdTooltipModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -26,6 +27,9 @@ import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule, MdBut
     MdGridListModule,
     MdDialogModule,
     MdAutocompleteModule,
+    MdMenuModule,
+    MdCheckboxModule,
+    MdTooltipModule,
   ],
   exports: [
     CommonModule,
@@ -42,6 +46,9 @@ import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule, MdBut
     MdGridListModule,
     MdDialogModule,
     MdAutocompleteModule,
+    MdMenuModule,
+    MdCheckboxModule,
+    MdTooltipModule,
   ],
   declarations: []
 })

@@ -7,6 +7,7 @@ export const loadSvgResources = (ir: MdIconRegistry, ds: DomSanitizer) => {
     const sidebarDir = `${imgDir}/sidebar`;
     const daysDir = `${imgDir}/days`;
     const avatarDir = `${imgDir}/avatar`;
+    const iconDir = `${imgDir}/icons`;
 
     ir.addSvgIcon('pen', ds.bypassSecurityTrustResourceUrl('assets/write.svg'));
     ir.addSvgIcon('day', ds.bypassSecurityTrustResourceUrl(`${sidebarDir}/day.svg`));
@@ -14,6 +15,10 @@ export const loadSvgResources = (ir: MdIconRegistry, ds: DomSanitizer) => {
     ir.addSvgIcon('project', ds.bypassSecurityTrustResourceUrl(`${sidebarDir}/project.svg`));
     ir.addSvgIcon('projects', ds.bypassSecurityTrustResourceUrl(`${sidebarDir}/projects.svg`));
     ir.addSvgIcon('week', ds.bypassSecurityTrustResourceUrl(`${sidebarDir}/week.svg`));
+    ir.addSvgIcon('add', ds.bypassSecurityTrustResourceUrl(`${iconDir}/add.svg`));
+    ir.addSvgIcon('delete', ds.bypassSecurityTrustResourceUrl(`${iconDir}/delete.svg`));
+    ir.addSvgIcon('move', ds.bypassSecurityTrustResourceUrl(`${iconDir}/move.svg`));
+    ir.addSvgIcon('unassigned', ds.bypassSecurityTrustResourceUrl(`${avatarDir}/unassigned.svg`));
     ir.addSvgIconSetInNamespace('avatars', ds.bypassSecurityTrustResourceUrl(`${avatarDir}/avatars.svg`));
     for (let i = 1; i <= 31; i++ ) {
         ir.addSvgIcon(`day${i}`, ds.bypassSecurityTrustResourceUrl(`${daysDir}/day${i}.svg`));

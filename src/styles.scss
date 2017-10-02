@@ -16,8 +16,8 @@ a { text-decoration: none; color: #3f51b5;}
 }
 main {
     flex: 1;
-    background: url("assets/img/quote_fallback.jpg");
-    background-size: cover;
+    // background: url("assets/img/quote_fallback.jpg");
+    // background-size: cover;
 }
 .fill-remaining-space {
     flex: 1 1 auto;
@@ -29,4 +29,10 @@ main {
 .text-right {
     margin: 10px;
     text-align: end;
+}
+.g-fab-btn {
+    position: fixed !important;
+    right: 32px;
+    bottom: 96px;
+    z-index: 998;
 }
