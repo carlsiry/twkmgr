@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-invate',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InvateComponent implements OnInit {
 
+  items = [
+    'One',
+    'Two',
+    'Three'
+  ]
+
   constructor() { }
 
   ngOnInit() {
   }
-
 }

@@ -1,3 +1,15 @@
-<p>
-  invate works!
-</p>
+
+<form>
+  <div md-dialog-title>邀请新成员</div>
+  <div md-dialog-content>
+    <md-form-field class="field-full-width">
+      <input type="text" placeholder="Pick one" aria-label="Number" mdInput [mdAutocomplete]="auto">
+      <md-autocomplete #auto="mdAutocomplete">
+        <md-option *ngFor="let item of items" [value]="item">
+          {{ item }}
+        </md-option>
+      </md-autocomplete>
+    </md-form-field>
+  </div>
+</form>
+  

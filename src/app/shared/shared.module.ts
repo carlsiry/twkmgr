@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule, MdButtonModule,
-  MdInputModule, MdCardModule, MdGridListModule, MdDialogModule} from '@angular/material';
+  MdInputModule, MdCardModule, MdGridListModule, MdDialogModule, MdAutocompleteModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -25,6 +25,7 @@ import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule, MdBut
     MdSlideToggleModule,
     MdGridListModule,
     MdDialogModule,
+    MdAutocompleteModule,
   ],
   exports: [
     CommonModule,
@@ -40,6 +41,7 @@ import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule, MdBut
     MdSlideToggleModule,
     MdGridListModule,
     MdDialogModule,
+    MdAutocompleteModule,
   ],
   declarations: []
 })
