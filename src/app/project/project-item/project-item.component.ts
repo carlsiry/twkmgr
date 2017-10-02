@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProjectItemComponent implements OnInit {
 
   @Input() item;
-  
+
   constructor() { }
 
   ngOnInit() {

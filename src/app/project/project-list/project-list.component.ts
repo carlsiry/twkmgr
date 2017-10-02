@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MdDialog } from '@angular/material';
+import { NewPorjectComponent } from '../new-porject/new-porject.component';
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
@@ -25,9 +26,13 @@ export class ProjectListComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(private dialogService: MdDialog) { }
 
   ngOnInit() {
+  }
+  openNewProjectDialog() {
+    const newProjectDialogRef = this.dialogService.open(NewPorjectComponent, {data: 'this is my dailog data.'});
+    newProjectDialogRef.afterClosed().subscribe(result => console.log(result));
   }
 
 }
