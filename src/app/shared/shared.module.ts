@@ -9,7 +9,8 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule, 
   MdButtonModule, MdInputModule, MdCardModule, MdGridListModule, MdDialogModule,
-  MdAutocompleteModule, MdMenuModule, MdCheckboxModule, MdTooltipModule} from '@angular/material';
+  MdAutocompleteModule, MdMenuModule, MdCheckboxModule, MdTooltipModule,
+  MdRadioModule, MdDatepickerModule, MdNativeDateModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -30,6 +31,9 @@ import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule,
     MdMenuModule,
     MdCheckboxModule,
     MdTooltipModule,
+    MdRadioModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
   ],
   exports: [
     CommonModule,
@@ -49,6 +53,9 @@ import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule,
     MdMenuModule,
     MdCheckboxModule,
     MdTooltipModule,
+    MdRadioModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
   ],
   declarations: []
 })
