@@ -1,5 +1,6 @@
 
 <md-list-item class="container"
+  [@taskItemAnim]="taskItemState"
   [ngClass]="{
     'priority-normal': item.priority === 1,
     'priority-important': item.priority === 2,

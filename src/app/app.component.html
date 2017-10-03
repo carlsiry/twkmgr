@@ -8,7 +8,11 @@
       <app-header (toggle)="sidenav.toggle()" (toggleDarkTheme)="switchTheme($event)"></app-header>
     </header>
     <main>
+      
       <router-outlet></router-outlet>
+
+      <!-- 为了测试动画写法 -->
+      <!-- <div class="square" [@squareTrigger]="squareState" (click)="onClick()"></div> -->
     </main>
     <footer>
       <app-footer></app-footer>

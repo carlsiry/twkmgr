@@ -16,8 +16,13 @@ a { text-decoration: none; color: #3f51b5;}
 }
 main {
     flex: 1;
-    // background: url("assets/img/quote_fallback.jpg");
-    // background-size: cover;
+    background: url("assets/img/quote_fallback.jpg");
+    background-size: cover;
+
+    // 为了测试动画写法的布局样式
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
 }
 .fill-remaining-space {
     flex: 1 1 auto;
