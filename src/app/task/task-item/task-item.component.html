@@ -5,8 +5,9 @@
     'priority-important': item.priority === 2,
     'priority-emergency': item.priority === 3
   }">
-  <md-checkbox [checked]="item.completed"></md-checkbox>
-  <div md-line class="content" [ngClass]="{'completed': item.completed}">
+  <md-checkbox [checked]="item.completed" (click)="onClickCheckbox($event)"></md-checkbox>
+  <div md-line class="content" [ngClass]="{'completed': item.completed}"
+    (click)="onClickUpdateTask()">
     <span [md-tooltip]="item.desc">{{item.desc}}</span>
   </div>
   <div md-line class="bottom-bar">

@@ -4,10 +4,14 @@
     *ngFor="let list of lists">
     <app-task-header 
       [header]="list.name"
-      (addNewTask)="openAddNewTaskDialog()"></app-task-header>
+      (addNewTask)="openAddNewTaskDialog()"
+      (moveAllTask)="openMoveAllTaskDialog()"
+      (updateList)="openUpdateListDialog()"
+      (deleteList)="openConfirmDeleteDialog()"></app-task-header>
     <app-task-item
       *ngFor="let task of list.tasks"
-      [item]="task">
+      [item]="task"
+      (updateTask)="openUpdateTaskDialog()">
     </app-task-item>
   </app-task-list>
 </div>

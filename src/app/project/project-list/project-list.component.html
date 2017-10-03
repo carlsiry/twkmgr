@@ -1,6 +1,9 @@
+
 <app-project-item *ngFor="let project of projects"
   [item]="project" class="card"
-  (invate)="openInvateDialog()"></app-project-item>
+  (invate)="openInvateDialog()"
+  (updateProject)="openUpdateProjectDialog()"
+  (deleteProject)="openConfirmDeleteProjectDialog()"></app-project-item>
 
   <button class="g-fab-btn" md-fab type="button" (click)="openNewProjectDialog()">
     <md-icon>add</md-icon>

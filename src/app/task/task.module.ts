@@ -7,13 +7,19 @@ import { TaskHeaderComponent } from './task-header/task-header.component';
 import { SharedModule } from '../shared/shared.module';
 import { TaskRoutingModule } from './task-routing.module';
 import { NewTaskComponent } from './new-task/new-task.component';
+import { CopyTaskComponent } from './copy-task/copy-task.component';
+import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
+import { NewTaskListComponent } from './new-task-list/new-task-list.component';
 
 @NgModule({
   imports: [
     SharedModule,
     TaskRoutingModule
   ],
-  declarations: [TaskHomeComponent, TaskListComponent, TaskItemComponent, TaskHeaderComponent, NewTaskComponent],
-  entryComponents: [NewTaskComponent]
+  declarations: [
+    TaskHomeComponent, TaskListComponent, TaskItemComponent,
+    TaskHeaderComponent, NewTaskComponent, CopyTaskComponent, NewTaskListComponent
+  ],
+  entryComponents: [NewTaskListComponent, NewTaskComponent, CopyTaskComponent, ConfirmDialogComponent]
 })
 export class TaskModule { }

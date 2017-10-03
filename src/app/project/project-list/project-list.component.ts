@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
 import { NewPorjectComponent } from '../new-porject/new-porject.component';
 import { InvateComponent } from '../invate/invate.component';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
@@ -32,11 +33,17 @@ export class ProjectListComponent implements OnInit {
   ngOnInit() {
   }
   openNewProjectDialog() {
-    const newProjectDialogRef = this.dialogService.open(NewPorjectComponent, {data: 'this is my dailog data.'});
+    const newProjectDialogRef = this.dialogService.open(NewPorjectComponent, {data: {title: '新建项目'}});
     newProjectDialogRef.afterClosed().subscribe(result => console.log(result));
   }
   openInvateDialog() {
     this.dialogService.open(InvateComponent);
+  }
+  openUpdateProjectDialog() {
+    this.dialogService.open(NewPorjectComponent, {data: {title: '修改项目'}})
+  }
+  openConfirmDeleteProjectDialog() {
+    this.dialogService.open(ConfirmDialogComponent);
   }
 
 }

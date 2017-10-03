@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MD_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-new-task',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewTaskComponent implements OnInit {
 
+  title: string;
   // 优先级标签属性值：label用于显示、值用于对应修饰类
   priorities = [
     {
@@ -23,9 +25,10 @@ export class NewTaskComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(@Inject(MD_DIALOG_DATA) private data) { }
 
   ngOnInit() {
+    this.title = this.data.title;
   }
 
 }

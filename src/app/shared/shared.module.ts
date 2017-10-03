@@ -10,7 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule, 
   MdButtonModule, MdInputModule, MdCardModule, MdGridListModule, MdDialogModule,
   MdAutocompleteModule, MdMenuModule, MdCheckboxModule, MdTooltipModule,
-  MdRadioModule, MdDatepickerModule, MdNativeDateModule} from '@angular/material';
+  MdRadioModule, MdDatepickerModule, MdNativeDateModule, MdSelectModule} from '@angular/material';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule,
     MdRadioModule,
     MdDatepickerModule,
     MdNativeDateModule,
+    MdSelectModule,
   ],
   exports: [
     CommonModule,
@@ -56,7 +58,9 @@ import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule,
     MdRadioModule,
     MdDatepickerModule,
     MdNativeDateModule,
+    MdSelectModule,
+    ConfirmDialogComponent,
   ],
-  declarations: []
+  declarations: [ConfirmDialogComponent]
 })
 export class SharedModule { }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
 import { NewTaskComponent } from '../new-task/new-task.component';
+import { CopyTaskComponent } from '../copy-task/copy-task.component';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
+import { NewTaskListComponent } from '../new-task-list/new-task-list.component';
 
 @Component({
   selector: 'app-task-home',
@@ -87,7 +90,24 @@ export class TaskHomeComponent implements OnInit {
   }
   // 打开新建任务对话框
   openAddNewTaskDialog() {
-    this.mdDialog.open(NewTaskComponent);
+    this.mdDialog.open(NewTaskComponent, {data: {title: '新建任务'}});
+  }
+  // 打开移动所有任务到其他列表的对话框
+  openMoveAllTaskDialog() {
+    this.mdDialog.open(CopyTaskComponent, {data: {lists: this.lists}});
+  }
+  openUpdateListDialog() {
+    this.mdDialog.open(NewTaskListComponent, {data: {title: '修改列表名称'}})
+  }
+  openConfirmDeleteDialog() {
+    this.mdDialog.open(ConfirmDialogComponent);
+  }
+  openUpdateTaskDialog() {
+    console.log('update task');
+    this.mdDialog.open(NewTaskComponent, {data: {title: '修改任务'}})
+  }
+  openNewTaskListDialog() {
+    this.mdDialog.open(NewTaskListComponent, {data: {title: '新建任务列表'}})
   }
 
 }
