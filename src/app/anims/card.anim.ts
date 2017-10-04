@@ -9,13 +9,13 @@ import {
 
 // 应用于卡片的动画：悬浮放大浮现立体效果
 export const cardAnim = trigger('cardAnim', [
+    state('void', style({
+        'transform': 'scale(0)',
+    })),
     state('hover', style({
         'transform': 'scale(1.06)',
         'box-shadow': '0 0 50px'
     })),
-    // state('mouseOut', style({
-    //     'transform': 'scale(1)',
-    //     'box-shadow': '0 0 0'
-    // })),
-    transition('void <=> hover', animate('200ms ease-in-out'))
+    transition('void => *', animate('500ms ease-in-out')),
+    transition('* <=> hover', animate('400ms ease-in-out'))
 ]);

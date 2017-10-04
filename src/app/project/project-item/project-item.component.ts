@@ -15,7 +15,7 @@ export class ProjectItemComponent implements OnInit {
   @Output() invate = new EventEmitter<void>();
   @Output() updateProject = new EventEmitter<void>();
   @Output() deleteProject = new EventEmitter<void>();
-  @HostBinding('@cardAnim') cardState = 'void';
+  @HostBinding('@cardAnim') cardState;
 
   constructor() { }
 
@@ -28,7 +28,7 @@ export class ProjectItemComponent implements OnInit {
   }
   @HostListener('mouseleave')
   onMouseLeave() {
-    this.cardState = 'void';
+    this.cardState = '';
   }
 
   onInvate() {

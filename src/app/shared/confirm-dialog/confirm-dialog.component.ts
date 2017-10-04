@@ -10,8 +10,8 @@ import { MdDialogRef } from '@angular/material';
     删除后不可恢复噢
   </div>
   <div md-dialog-actions>
-    <button type="button" md-raised-button color="primary">确认</button>
-    <button type="button" md-raised-button md-dialog-close>取消</button>
+    <button type="button" md-raised-button color="primary" (click)="onConfirm()">确认</button>
+    <button type="button" md-raised-button md-dialog-close (click)="onCancel()">取消</button>
   </div>
 </form>
   `,
@@ -22,6 +22,12 @@ export class ConfirmDialogComponent implements OnInit {
   constructor(private dialogRef: MdDialogRef<ConfirmDialogComponent>) { }
 
   ngOnInit() {
+  }
+  onConfirm() {
+    this.dialogRef.close('yes!');
+  }
+  onCancel() {
+    this.dialogRef.close('cancel!');
   }
 
 }

@@ -5,10 +5,10 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 .list-container {
     flex: 0 0 360px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 }
