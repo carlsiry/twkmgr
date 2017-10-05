@@ -115,4 +115,8 @@ export class TaskHomeComponent implements OnInit {
     this.mdDialog.open(NewTaskListComponent, {data: {title: '新建任务列表'}})
   }
 
+  addQuickTask(desc: string) {
+    console.log(desc);
+  }
+
 }

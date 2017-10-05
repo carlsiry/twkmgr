@@ -1,0 +1,8 @@
+
+<!-- 用于快速添加任务 -->
+<md-form-field class="field-inner-full-width">
+  <input mdInput placeholder="输入快捷任务" type="text" [(ngModel)]="desc" required>
+  <button mdSuffix (click)="onClickSendQuickTask()" md-icon-button type="button">
+    <md-icon>send</md-icon>
+  </button>
+</md-form-field>

@@ -8,6 +8,7 @@
       (moveAllTask)="openMoveAllTaskDialog()"
       (updateList)="openUpdateListDialog()"
       (deleteList)="openConfirmDeleteDialog()"></app-task-header>
+    <app-quick-task (quickTask)="addQuickTask($event)"></app-quick-task>
     <app-task-item
       *ngFor="let task of list.tasks"
       [item]="task"
