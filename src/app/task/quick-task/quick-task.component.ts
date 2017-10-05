@@ -18,6 +18,7 @@ export class QuickTaskComponent implements OnInit {
   @HostListener('keyup.enter')
   onClickSendQuickTask() {
     this.quickTask.emit(this.desc);
+    this.desc = '';
   }
 
 }
