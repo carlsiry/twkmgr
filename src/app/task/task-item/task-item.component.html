@@ -5,7 +5,8 @@
     'priority-normal': item.priority === 1,
     'priority-important': item.priority === 2,
     'priority-emergency': item.priority === 3
-  }">
+  }"
+  [appDraggable]="true" [draggedClass]="'drag-start'">
   <md-checkbox [checked]="item.completed" (click)="onClickCheckbox($event)"></md-checkbox>
   <div md-line class="content" [ngClass]="{'completed': item.completed}"
     (click)="onClickUpdateTask()">

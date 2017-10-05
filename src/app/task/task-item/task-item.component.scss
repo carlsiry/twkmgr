@@ -53,3 +53,9 @@ md-icon.avatar {
 :host {
     width: 100%;
 }
+
+// 被拖拽样式
+.drag-start {
+    opacity: .5;
+    border: #ff525b dashed 2px;
+}
