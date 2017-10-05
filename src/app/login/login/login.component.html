@@ -1,4 +1,4 @@
-<form class="login-form">
+<form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm, $event)">
   <md-card class="login-form__card">
       <md-card-header>
         <md-card-title>登录</md-card-title>
@@ -6,15 +6,16 @@
       </md-card-header>
       <md-card-content>
           <md-form-field class="field-full-width">
-            <input mdInput placeholder="邮箱地址" type="email" [formControl]="userFormControl">
+            <input mdInput placeholder="邮箱地址" type="email" formControlName="email">
             <span mdSuffix>@163.com</span>
-            <md-error *ngIf="userFormControl.hasError('required')">not correct!</md-error>
-            <md-error *ngIf="userFormControl.hasError('pattern')">邮箱格式不正确啊!</md-error>
+            <!-- <md-error *ngIf="userFormControl.hasError('required')">not correct!</md-error> -->
+            <!-- <md-error *ngIf="userFormControl.hasError('pattern')">邮箱格式不正确啊!</md-error> -->
           </md-form-field>
           <md-form-field class="field-full-width">
-            <input mdInput placeholder="用户密码" type="password">
+            <input mdInput placeholder="用户密码" type="password" formControlName="password">
           </md-form-field>
-          <button md-raised-button class="field-full-width" color="accent" type="button">登录</button>
+          <button md-raised-button class="field-full-width"
+            color="accent" type="submit" [disabled]="!loginForm.valid">登录</button>
       </md-card-content>
       <md-card-actions class="text-right">
         <p class="login-form__tip">还没有账户？<a routerLink="/register">注册</a></p>
