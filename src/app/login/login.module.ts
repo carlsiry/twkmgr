@@ -6,12 +6,13 @@ import { LoginRoutingModule } from './login-routing.module';
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { RegisterComponent } from './register/register.component';
+import { ImageListSelectComponent } from './image-list-select/image-list-select.component';
 
 @NgModule({
   imports: [
     LoginRoutingModule,
     SharedModule
   ],
-  declarations: [ LoginComponent, RegisterComponent ]
+  declarations: [ LoginComponent, RegisterComponent, ImageListSelectComponent]
 })
 export class LoginModule { }

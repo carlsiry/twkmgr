@@ -22,7 +22,7 @@ export class ImageListSelectComponent implements ControlValueAccessor {
 
   @Input() title = '请选择';
   @Input() cols = 6;
-  @Input() rowHight = '64px';
+  @Input() rowHeight = '64px';
   @Input() items: string[] = [];
   @Input() useSvgIcon = false;
   @Input() itemWidth = '80px';
@@ -40,9 +40,7 @@ export class ImageListSelectComponent implements ControlValueAccessor {
     this.propagateChange = fn;
   }
   // 表单变脏（聚焦过）
-  registerOnTouched(fn: any): void {
-    console.error('Method not implemented.');
-  }
+  registerOnTouched(fn: any): void { }
 
   onChange(i) {
     this.selected = this.items[i];

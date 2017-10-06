@@ -18,7 +18,6 @@ import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule, MdBut
 } from '@angular/material';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { DirectiveModule } from '../directive/directive.module';
-import { ImageListSelectComponent } from './image-list-select/image-list-select.component';
 
 @NgModule({
   imports: [
@@ -54,6 +53,6 @@ import { ImageListSelectComponent } from './image-list-select/image-list-select.
     ConfirmDialogComponent,
     DirectiveModule,
   ],
-  declarations: [ConfirmDialogComponent, ImageListSelectComponent]
+  declarations: [ConfirmDialogComponent]
 })
 export class SharedModule { }
