@@ -20,12 +20,19 @@ export class RegisterComponent implements OnInit {
       name: [],
       password: [],
       repeat: [],
-      avatar: [img]
+      avatar: [img],
+      dateOfBirth: ['1994-09-08']
     });
     for (let index = 1; index < 15; index++) {
       this.items.push(`avatars:svg-${index}`);
     }
     console.log(this.items);
   }
-
+  onSubmit({value, valid}, ev: Event) {
+    ev.preventDefault();
+    if (!valid) {
+      return;
+    }
+    console.log(value);
+  }
 }

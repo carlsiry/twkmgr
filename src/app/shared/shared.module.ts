@@ -11,13 +11,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule, MdButtonModule,
+import {
+  MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule, MdButtonModule,
   MdInputModule, MdCardModule, MdGridListModule, MdDialogModule, MdAutocompleteModule, MdMenuModule,
   MdCheckboxModule, MdTooltipModule, MdRadioModule, MdDatepickerModule, MdNativeDateModule,
-  MdSelectModule,
+  MdSelectModule, _MdButtonToggleGroupMixinBase, MdButtonToggleModule,
 } from '@angular/material';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { DirectiveModule } from '../directive/directive.module';
+import { AgeInputComponent } from './age-input/age-input.component';
 
 @NgModule({
   imports: [
@@ -26,7 +28,9 @@ import { DirectiveModule } from '../directive/directive.module';
     ReactiveFormsModule,
     MdIconModule,
     MdButtonModule,
+    MdButtonToggleModule,
     MdDialogModule,
+    MdDatepickerModule, // shareModule 中 age-input中用到，如果这个组件调整到其他模块，记得删除
   ],
   exports: [
     CommonModule,
@@ -52,7 +56,8 @@ import { DirectiveModule } from '../directive/directive.module';
     MdSelectModule,
     ConfirmDialogComponent,
     DirectiveModule,
+    AgeInputComponent, // 年龄选择控件
   ],
-  declarations: [ConfirmDialogComponent]
+  declarations: [ConfirmDialogComponent, AgeInputComponent]
 })
 export class SharedModule { }
