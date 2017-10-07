@@ -2,12 +2,13 @@
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 
-// 在 模块下声明调试接口的类型
+// #region 在 模块下声明调试接口的类型
 declare module 'rxjs/Observable' {
     interface Observable<T> {
         debug: (...any) => Observable<T>;
     }
 }
+// #endregion
 
 // #region method docs
 // 给所有的数据流添加调试记录方法：传入记录标志，为流中每个值输出标记日志，错误日志，完成日志
