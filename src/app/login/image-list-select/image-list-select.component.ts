@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl } from '@angular/forms';
 
 @Component({
@@ -26,7 +26,7 @@ export class ImageListSelectComponent implements ControlValueAccessor {
   @Input() items: string[] = [];
   @Input() useSvgIcon = false;
   @Input() itemWidth = '80px';
-  selected: string;
+  selected: string; // 自定义表单值
   private propagateChange = (_: any) => {};
 
   constructor() { }
