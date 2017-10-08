@@ -6,11 +6,15 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProjectService} from './project.service';
+import { ProjectService } from './project.service';
+import { TaskListService } from './task-list.service';
+import { TaskService } from './task.service';
 
 @NgModule({
   providers: [
-    ProjectService
+    ProjectService,
+    TaskListService,
+    TaskService,
   ]
 })
 export class ServicesModule { }
