@@ -3,3 +3,40 @@
 
 # 测试请求项目列表 
 GET http://localhost:3000/projects?members_like=1
+
+###
+GET  http://localhost:3000/projects
+
+###
+GET  http://localhost:3000/taskLists
+
+###
+POST http://localhost:3000/taskLists HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "待完成",
+    "order": 1,
+    "projectId": "1"
+}
+
+###
+PUT  http://localhost:3000/taskLists/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "待完",
+    "order": 2,
+    "projectId": "1"
+}
+
+###
+PATCH  http://localhost:3000/taskLists/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "待完o"
+}
+
+###
+DELETE  http://localhost:3000/taskLists/1 HTTP/1.1
