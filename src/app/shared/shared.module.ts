@@ -6,6 +6,8 @@
  * 2017.10.03 Carlsiry
  * 1. 只导入 ConfirmDialogComponent 中要用到的模块
  * 2. 导出 所有在很多模块中都要用到的模块
+ *
+ * 2017.10.08 Carlsiry 从 登录模块 迁移了 图片列表选择组件表单
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -20,6 +22,7 @@ import {
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { DirectiveModule } from '../directive/directive.module';
 import { AgeInputComponent } from './age-input/age-input.component';
+import { ImageListSelectComponent } from './image-list-select/image-list-select.component';
 
 @NgModule({
   imports: [
@@ -30,6 +33,7 @@ import { AgeInputComponent } from './age-input/age-input.component';
     MdButtonModule,
     MdButtonToggleModule,
     MdDialogModule,
+    MdGridListModule,
     MdDatepickerModule, // shareModule 中 age-input中用到，如果这个组件调整到其他模块，记得删除
   ],
   exports: [
@@ -57,7 +61,8 @@ import { AgeInputComponent } from './age-input/age-input.component';
     ConfirmDialogComponent,
     DirectiveModule,
     AgeInputComponent, // 年龄选择控件
+    ImageListSelectComponent,
   ],
-  declarations: [ConfirmDialogComponent, AgeInputComponent]
+  declarations: [ConfirmDialogComponent, AgeInputComponent, ImageListSelectComponent]
 })
 export class SharedModule { }
