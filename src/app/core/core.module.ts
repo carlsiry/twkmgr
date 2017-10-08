@@ -9,6 +9,9 @@
  * 2. 导入导出 整个应用的路由模块（AppRoutingModule）
  * 3. 直接导出 BrowserModule BrowserAnimationsModule 浏览器支持相关的模块（到根模块中，根模块结构非简洁）
  * 4. 导出 MdSidenavModule 用于根模块中设置侧边导航栏
+ *
+ * 2017.10.08 Carlisry
+ *  - 导入服务模块
  */
 
 import { NgModule, SkipSelf, Optional } from '@angular/core';
@@ -43,11 +46,13 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/count';
 import 'rxjs/add/operator/do';
+import { ServicesModule } from '../services/services.module';
 
 @NgModule({
   imports: [
     SharedModule,
     AppRoutingModule,
+    ServicesModule,
   ],
   declarations: [HeaderComponent, SidebarComponent, FooterComponent],
   exports: [
@@ -56,7 +61,13 @@ import 'rxjs/add/operator/do';
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-  ]
+  ],
+  providers: [
+    {
+      provide: 'BASE_CONFIG',
+      useValue: { uri: 'http://localhost:3000' }
+    }
+  ],
 })
 export class CoreModule {
   constructor(

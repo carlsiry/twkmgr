@@ -1,0 +1,5 @@
+
+# 2017.10.08 创建请求测试链接
+
+# 测试请求项目列表 
+GET http://localhost:3000/projects?members_like=1
