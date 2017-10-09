@@ -1,8 +1,10 @@
 
+// 修复当项目描述为空时，项目卡片不对齐 
 .card {
     height: 360px;
     flex: 0 0 360px;
     margin: 10px;
+    display: flex;
 }
 
 .container {

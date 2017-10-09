@@ -167,6 +167,10 @@
   version "2.5.45"
   resolved "http://registry.npm.taobao.org/@types/jasmine/download/@types/jasmine-2.5.45.tgz#58928a621d014ce6ab59c5a9c41071f7328b0ca9"
 
+"@types/lodash@^4.14.77":
+  version "4.14.77"
+  resolved "http://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.77.tgz#0bc699413e84d6ed5d927ca30ea0f0a890b42d75"
+
 "@types/node@^6.0.46", "@types/node@~6.0.60":
   version "6.0.88"
   resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-6.0.88.tgz#f618f11a944f6a18d92b5c472028728a3e3d4b66"

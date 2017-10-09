@@ -1,9 +1,10 @@
 
+<!-- 2017.10.09 修正更新项目的接口调用 -->
 <div class="container" [@listAnim]="projects.length">
   <app-project-item *ngFor="let project of projects"
     [item]="project" class="card"
     (invate)="openInvateDialog()"
-    (updateProject)="openUpdateProjectDialog()"
+    (updateProject)="openUpdateProjectDialog(project)"
     (deleteProject)="openConfirmDeleteProjectDialog(project)">
   </app-project-item>
 </div>
