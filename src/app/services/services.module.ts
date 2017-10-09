@@ -12,6 +12,7 @@ import { ProjectService } from './project.service';
 import { TaskListService } from './task-list.service';
 import { TaskService } from './task.service';
 import { UserService } from './user.service';
+import { AuthService } from './auth.service';
 
 @NgModule({
   providers: [
@@ -19,6 +20,7 @@ import { UserService } from './user.service';
     TaskListService,
     TaskService,
     UserService,
+    AuthService,
   ]
 })
 export class ServicesModule { }
