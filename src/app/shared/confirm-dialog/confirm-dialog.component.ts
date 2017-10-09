@@ -1,3 +1,7 @@
+
+/**
+ * 2017.10.09 修复确认删除对话框的确定、取消功能
+ */
 import { Component, OnInit } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
 
@@ -24,10 +28,10 @@ export class ConfirmDialogComponent implements OnInit {
   ngOnInit() {
   }
   onConfirm() {
-    this.dialogRef.close('yes!');
+    this.dialogRef.close(true);
   }
   onCancel() {
-    this.dialogRef.close('cancel!');
+    this.dialogRef.close(false);
   }
 
 }
