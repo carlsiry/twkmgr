@@ -2,6 +2,7 @@
 /**
  * 2017.10.08 创建 项目服务 ---Carlsiry
  *    包含 CRUD 项目 等功能
+ * 2017.10.09 修复删除项目功能：没有任务列表的项目，订阅流出现问题
  */
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers } from '@angular/http';
@@ -39,8 +40,8 @@ export class ProjectService {
   }
   // DELETE 删除项目：三级级联关系—— 项目-任务列表-任务
   del(project: Project): Observable<Project> {
-    // 删除任务列表的流 
-    const delTasks$ = Observable.from(project.taskLists)
+    // 删除任务列表的流
+    const delTasks$ = Observable.from(project.taskLists ? project.taskLists : [])
       .mergeMap(listId => this.http.delete(`${this.config.uri}/taskLists/${listId}`))
       .count();
     // 删除项目的流
