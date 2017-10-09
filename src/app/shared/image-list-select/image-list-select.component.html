@@ -1,10 +1,11 @@
+<!-- 2017.10.08 修复ngStyle指令的用法、可以显示普通图片 -->
 
 <div>
   <span>{{title}}</span>
   <!-- 如果使用的普通图片：换用下面的模版显示 -->
   <md-icon [svgIcon]="selected" *ngIf="useSvgIcon else imgSelect"
      class="avatar"></md-icon>
-  <ng-template #imgSelect> -->
+  <ng-template #imgSelect>
     <img [src]="selected" alt="image selected" class="cover">
   </ng-template>
 </div>
@@ -13,11 +14,11 @@
   <md-grid-list [cols]="cols" [rowHeight]="rowHeight">
     <md-grid-tile *ngFor="let item of items; let i = index">
       <div class="image-container" (click)="onChange(i)">
-        <md-icon [svgIcon]="item" class="avatar"></md-icon>
+        <md-icon [svgIcon]="item" *ngIf="useSvgIcon else imgItem" class="avatar"></md-icon>
         <ng-template #imgItem>
-          <img [src]="item" alt="image item" ngStyle="{'width': itemWidth}">
+          <img [src]="item" alt="image item" [ngStyle]="{'width': itemWidth}">
         </ng-template>
-        <div class="after"> -->
+        <div class="after">
           <div class="zoom">
             <md-icon>checked</md-icon>
           </div>
