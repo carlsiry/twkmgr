@@ -5,6 +5,7 @@
  * 2017.10.09 项目的增删改查全部调用 service 数据流接口，使用模拟数据
  *    - 引入了 lodash 库，生成范围索引，引入项目图片选择
  *    - 增加缩略图和原图链接地址转换函数
+ * 2017.10.10 完善邀请成员的按钮功能，传入成员组到对话框组件，返回成员组（如果新增的话）
  */
 
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
@@ -55,8 +56,9 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       .switchMap(project => this.projectService.add(project))
       .subscribe(addedProject => this.projects = [...this.projects, addedProject]);
   }
+  // 打开邀请组成员对话框
   openInvateDialog() {
-    this.dialogService.open(InvateComponent);
+    this.dialogService.open(InvateComponent, {data: {members: []}});
   }
   // 打开更新项目对话框
   openUpdateProjectDialog(project: Project) {
@@ -73,7 +75,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
         this.projects = [...this.projects.slice(0, index), updatedProject, ...this.projects.slice(index + 1)];
       });
   }
-  // 确认是否删除项目 
+  // 确认是否删除项目
   openConfirmDeleteProjectDialog(project) {
     const confirmDialogRef = this.dialogService.open(ConfirmDialogComponent);
     confirmDialogRef.afterClosed().take(1)

@@ -1,6 +1,7 @@
 /**
  * 2017.10.09 创建自动建议表单控件
  * 2017.10.10 基本完成自动建议表单控件 -- Carlsiry
+ * 2017.10.10 修复 表单校验无效问题，和传入值未校验问题
  */
 
 import {Component, forwardRef, Input, OnInit} from '@angular/core';
@@ -59,13 +60,13 @@ export class ChipsListComponent implements OnInit, ControlValueAccessor {
 
   // 设置表单初始值
   writeValue(users: User[]): void {
-    if (this.multiple) {
+    if (users && this.multiple) {
       const userEntities = users.reduce((e, c) => ({...e, c}), {});
       if (this.items) {
         const remaining = this.items.filter(item => !userEntities[item.id]);
         this.items = [...remaining, ...users];
       }
-    } else {
+    } else if (users) {
       this.items = [...users];
     }
   }
@@ -76,7 +77,7 @@ export class ChipsListComponent implements OnInit, ControlValueAccessor {
 
   // 如果用户们为空则返回错误
   validate(c: FormControl): {[key: string]: any} {
-    return this.items ? null : {
+    return this.items.length > 0 ? null : {
       chipsListInvalid: true
     };
   }

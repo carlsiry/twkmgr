@@ -1,15 +1,19 @@
-
-<form>
-  <div md-dialog-title>邀请新成员</div>
-  <div md-dialog-content>
-    <md-form-field class="field-full-width">
-      <input type="text" placeholder="Pick one" aria-label="Number" mdInput [mdAutocomplete]="auto">
-      <md-autocomplete #auto="mdAutocomplete">
-        <md-option *ngFor="let item of items" [value]="item">
-          {{ item }}
-        </md-option>
-      </md-autocomplete>
-    </md-form-field>
+<!-- 
+  2017.10.10 逸夫楼 Carlsiry
+    使用自动建议选择条表单组件重构邀请成员对话框视图
+ -->
+<form class="full-width" #f="ngForm" (ngSubmit)="onSubmit($event, f)">
+  <h2 md-dialog-title>邀请组成员</h2>
+  <app-chips-list
+      [label]="'邀请成员'"
+      name="members"
+      [(ngModel)]="members">
+  </app-chips-list>
+  <div md-dialog-actions>
+    <button md-raised-button color="primary" type="submit" [disabled]="!f.valid">
+      保存
+    </button>
+    <button mdDialogClose md-raised-button type="button">关闭</button>
   </div>
 </form>
   

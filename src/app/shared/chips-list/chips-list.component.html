@@ -1,22 +1,25 @@
 <!-- 
   2017.10.09 创建选择用户表单组件模版
+  2017.10.10 修复bug - Autocomplete not AutoComplete
  -->
 
  <div [formGroup]="form">
-   <span>{{label}}</span>
+   <h4>{{label}}</h4>
    <md-chip-list>
-    <md-chip selected="true" color="primary" *ngFor="let member of items" >
+    <md-chip color="primary" selected="true" *ngFor="let member of items" >
       {{member.name}} <span class="remove-tag" (click)="removeMember(member)">x</span>
     </md-chip>
   </md-chip-list>
-  <md-form-field *ngIf="displayInput" class="field-full-width">
+  <!-- 输入字母会发起查询用户 -->
+  <md-form-field *ngIf="displayInput" class="full-width">
     <input mdInput 
       [placeholder]="placeholderText"
-      [mdAutoComplete]="autoMember"
+      [mdAutocomplete]="autoMember"
       formControlName="memberSearch">
   </md-form-field>
  </div>
- <md-autocomplete #autoMember="mdAutoComplete" [displayWith]="displayUser">
+ <!-- 随着输入框的文字输入，会发射查询返回结果（用户）流到 自动完成组件中显示-->
+ <md-autocomplete #autoMember="mdAutocomplete" [displayWith]="displayUser">
    <md-option *ngFor="let item of memberResults$ | async"
       [value]="item"
       (onSelectionChange)="handleMemberSelection(item)">

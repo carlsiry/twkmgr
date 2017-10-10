@@ -9,6 +9,7 @@
  *
  * 2017.10.08 Carlsiry 从 登录模块 迁移了 图片列表选择组件表单
  * 2017.10.10 Carlsiry 引入了 自动建议选择条表单控件
+ * 2017.10.10 Carlsiry 引入 自动完成模块、选中条模块 - chipListComponent
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,13 +19,15 @@ import {
   MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule, MdButtonModule,
   MdInputModule, MdCardModule, MdGridListModule, MdDialogModule, MdAutocompleteModule, MdMenuModule,
   MdCheckboxModule, MdTooltipModule, MdRadioModule, MdDatepickerModule, MdNativeDateModule,
-  MdSelectModule, _MdButtonToggleGroupMixinBase, MdButtonToggleModule,
+  MdSelectModule, MdButtonToggleModule, MdChipsModule,
 } from '@angular/material';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { DirectiveModule } from '../directive/directive.module';
 import { AgeInputComponent } from './age-input/age-input.component';
 import { ImageListSelectComponent } from './image-list-select/image-list-select.component';
 import { ChipsListComponent } from './chips-list/chips-list.component';
+import { IdentityInputComponent } from './identity-input/identity-input.component';
+import { AreaListComponent } from './area-list/area-list.component';
 
 @NgModule({
   imports: [
@@ -37,6 +40,10 @@ import { ChipsListComponent } from './chips-list/chips-list.component';
     MdDialogModule,
     MdGridListModule,
     MdDatepickerModule, // shareModule 中 age-input中用到，如果这个组件调整到其他模块，记得删除
+    MdChipsModule,
+    MdAutocompleteModule,
+    MdInputModule,
+    MdSelectModule,
   ],
   exports: [
     CommonModule,
@@ -64,7 +71,8 @@ import { ChipsListComponent } from './chips-list/chips-list.component';
     DirectiveModule,
     AgeInputComponent, // 年龄选择控件
     ImageListSelectComponent,
+    ChipsListComponent,
   ],
-  declarations: [ConfirmDialogComponent, AgeInputComponent, ImageListSelectComponent, ChipsListComponent]
+  declarations: [ConfirmDialogComponent, AgeInputComponent, ImageListSelectComponent, ChipsListComponent, IdentityInputComponent, AreaListComponent]
 })
 export class SharedModule { }

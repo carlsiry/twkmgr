@@ -28,7 +28,8 @@ main {
     flex: 1 1 auto;
 }
 
-.field-full-width {
+// 2017.10.10 增加自动建议到选择条表单控件后的后续版本 模版中类名更换
+.field-full-width, .full-width {
     width: 100%;
 }
 .text-right {
