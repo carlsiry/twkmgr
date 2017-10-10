@@ -1,0 +1,24 @@
+<!-- 
+  2017.10.09 创建选择用户表单组件模版
+ -->
+
+ <div [formGroup]="form">
+   <span>{{label}}</span>
+   <md-chip-list>
+    <md-chip selected="true" color="primary" *ngFor="let member of items" >
+      {{member.name}} <span class="remove-tag" (click)="removeMember(member)">x</span>
+    </md-chip>
+  </md-chip-list>
+  <md-form-field *ngIf="displayInput" class="field-full-width">
+    <input mdInput 
+      [placeholder]="placeholderText"
+      [mdAutoComplete]="autoMember"
+      formControlName="memberSearch">
+  </md-form-field>
+ </div>
+ <md-autocomplete #autoMember="mdAutoComplete" [displayWith]="displayUser">
+   <md-option *ngFor="let item of memberResults$ | async"
+      [value]="item"
+      (onSelectionChange)="handleMemberSelection(item)">
+    {{item.name}}</md-option>
+ </md-autocomplete>

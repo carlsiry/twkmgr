@@ -8,6 +8,7 @@
  * 2. 导出 所有在很多模块中都要用到的模块
  *
  * 2017.10.08 Carlsiry 从 登录模块 迁移了 图片列表选择组件表单
+ * 2017.10.10 Carlsiry 引入了 自动建议选择条表单控件
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -23,6 +24,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { DirectiveModule } from '../directive/directive.module';
 import { AgeInputComponent } from './age-input/age-input.component';
 import { ImageListSelectComponent } from './image-list-select/image-list-select.component';
+import { ChipsListComponent } from './chips-list/chips-list.component';
 
 @NgModule({
   imports: [
@@ -63,6 +65,6 @@ import { ImageListSelectComponent } from './image-list-select/image-list-select.
     AgeInputComponent, // 年龄选择控件
     ImageListSelectComponent,
   ],
-  declarations: [ConfirmDialogComponent, AgeInputComponent, ImageListSelectComponent]
+  declarations: [ConfirmDialogComponent, AgeInputComponent, ImageListSelectComponent, ChipsListComponent]
 })
 export class SharedModule { }
