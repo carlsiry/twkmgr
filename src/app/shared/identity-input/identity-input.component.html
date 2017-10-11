@@ -2,14 +2,17 @@
 <!-- 
   2017.10.10 31#605 Carlsiry
   创建 证件获取表单 的视图
+  2017.10.11 逸夫楼 使用新版下拉选择框用法
  -->
 <div>
   <!-- onIdTypeChange 发射证件类型的新值 -->
-  <mat-select placeholder="证件类型" (change)="onIdTypeChange($event.value)">
-    <mat-option *ngFor="let type of identityTypes" [value]="type.value">
-      {{type.label}}
-    </mat-option>
-  </mat-select>
+  <mat-form-field>
+    <mat-select placeholder="证件类型" (change)="onIdTypeChange($event.value)">
+      <mat-option *ngFor="let type of identityTypes" [value]="type.value">
+        {{type.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
 <div class="id-input">
   <!-- onIdNoChange 发射证件号码的新值 -->

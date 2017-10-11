@@ -3,37 +3,44 @@
   2017.10.11 省、市、县 下拉选择框，选择数据从知识集中获取，为数据流 provinces$ ...
     ngModel = _addrss.province ...
     onProvinceChange 事件绑定 _province Subject 发射新值
+  2017.10.11 晚上 逸夫楼 使用新版下拉框用法
  -->
 <div class="address-group">
   <div> <!-- 省 -->
-    <mat-select
-      [(ngModel)]="_address.province"
-      (change)="onProvinceChange()"
-      placeholder="请输入省份">
-      <mat-option *ngFor="let p of provinces$ | async" [value]="p">
-        {{p}}
-      </mat-option>
-    </mat-select>
+    <mat-form-field>
+      <mat-select
+        [(ngModel)]="_address.province"
+        (change)="onProvinceChange()"
+        placeholder="请输入省份">
+        <mat-option *ngFor="let p of provinces$ | async" [value]="p">
+          {{p}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div> <!-- 市 -->
-    <mat-select
-      [(ngModel)]="_address.city"
-      (change)="onCityChange()"
-      placeholder="请输入市">
-      <mat-option *ngFor="let c of cities$ | async" [value]="c">
-        {{c}}
-      </mat-option>
-    </mat-select>
+    <mat-form-field>
+      <mat-select
+        [(ngModel)]="_address.city"
+        (change)="onCityChange()"
+        placeholder="请输入市">
+        <mat-option *ngFor="let c of cities$ | async" [value]="c">
+          {{c}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div> <!-- 县 -->
-    <mat-select
-      [(ngModel)]="_address.district"
-      (change)="onDistrictChange()"
-      placeholder="请输入县市区">
-      <mat-option *ngFor="let d of districts$ | async" [value]="d">
-        {{d}}
-      </mat-option>
-    </mat-select>
+    <mat-form-field>
+      <mat-select
+        [(ngModel)]="_address.district"
+        (change)="onDistrictChange()"
+        placeholder="请输入县市区">
+        <mat-option *ngFor="let d of districts$ | async" [value]="d">
+          {{d}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div class="street"> <!-- 街道 -->
     <mat-form-field class="full-width">
