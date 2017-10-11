@@ -1,0 +1,15 @@
+
+/**
+* 2017.10.10 31#605 Carlsiry 
+* 让控件弹性布局，证件号输入框占满剩余空间
+*/ 
+
+.id-input {
+    flex: 1;
+}
+:host {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: baseline;
+}
