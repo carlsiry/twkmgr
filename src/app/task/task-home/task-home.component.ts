@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { NewTaskComponent } from '../new-task/new-task.component';
 import { CopyTaskComponent } from '../copy-task/copy-task.component';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
@@ -89,7 +89,7 @@ export class TaskHomeComponent implements OnInit {
     },
   ];
 
-  constructor(private mdDialog: MdDialog) { }
+  constructor(private mdDialog: MatDialog) { }
 
   ngOnInit() {
   }

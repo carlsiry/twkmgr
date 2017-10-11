@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-copy-task',
@@ -10,8 +10,8 @@ export class CopyTaskComponent implements OnInit {
 
   lists: any[];
   constructor(
-    @Inject(MD_DIALOG_DATA) private data,
-    private dialogRef: MdDialogRef<CopyTaskComponent>
+    @Inject(MAT_DIALOG_DATA) private data,
+    private dialogRef: MatDialogRef<CopyTaskComponent>
   ) { }
 
   ngOnInit() {

@@ -4,7 +4,7 @@
  *    加入视图模型 members 和 对话框表单提交处理行数
  */
 import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
-import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-invate',
@@ -16,7 +16,7 @@ export class InvateComponent implements OnInit {
   // 承载项目已经存在和新增的成员 10.10
   members = [];
 
-  constructor(@Inject(MD_DIALOG_DATA) private data, private dialogRef: MdDialogRef<InvateComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) private data, private dialogRef: MatDialogRef<InvateComponent>) { }
 
   ngOnInit() {
     this.members = [...this.data.members];

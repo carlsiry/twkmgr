@@ -4,14 +4,14 @@
   确认按钮的提交方式修改为表单的默认提交方式
  -->
 <form [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
-  <h2 md-dialog-title>{{title}}</h2>
-  <div md-dialog-content>
-    <md-form-field class="field-full-width">
-      <input mdInput placeholder="项目名称" formControlName="name" type="text">
-    </md-form-field>
-    <md-form-field class="field-full-width">
-      <input mdInput placeholder="项目描述" formControlName="desc" type="text">
-    </md-form-field>
+  <h2 matDialogTitle>{{title}}</h2>
+  <div mat-dialog-content>
+    <mat-form-field class="field-full-width">
+      <input matInput placeholder="项目名称" formControlName="name" type="text">
+    </mat-form-field>
+    <mat-form-field class="field-full-width">
+      <input matInput placeholder="项目描述" formControlName="desc" type="text">
+    </mat-form-field>
     <!-- 项目图片列表选择组件 -->
     <app-image-list-select
       [cols]="6"
@@ -20,8 +20,8 @@
       [useSvgIcon]="false"
       formControlName="coverImg"></app-image-list-select>
   </div>
-  <div md-dialog-actions>
-    <button type="button" md-raised-button color="primary" type="submit">保存</button>
-    <button type="button" md-raised-button md-dialog-close>关闭</button>
+  <div mat-dialog-actions>
+    <button type="button" mat-raised-button color="primary" type="submit">保存</button>
+    <button type="button" mat-raised-button matDialogClose>关闭</button>
   </div>
 </form>

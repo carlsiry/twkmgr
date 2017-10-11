@@ -1,24 +1,24 @@
-<md-nav-list (click)="onClickNav()">
-  <h3 md-subheader>项目</h3>
-  <md-list-item [routerLink]="['/tasks']">
-    <md-icon md-list-icon svgIcon="projects"></md-icon>
-    <span md-line>首页</span>
-    <span md-line md-subheader>查看我的所有项目</span>
-  </md-list-item>
-  <h3 md-subheader>日程</h3>
-  <md-list-item [routerLink]="['/projects']">
-    <md-icon md-list-icon svgIcon="month"></md-icon>
-    <span md-line>月视图</span>
-    <span md-line md-subheader>按月查看我的任务</span>
-  </md-list-item>
-  <md-list-item>
-    <md-icon md-list-icon svgIcon="week"></md-icon>
-    <span md-line>周视图</span>
-    <span md-line md-subheader>按周查看我的任务</span>
-  </md-list-item>
-  <md-list-item>
-    <md-icon md-list-icon [svgIcon]="day"></md-icon>
-    <span md-line>日视图</span>
-    <span md-line md-subheader>按日查看我的任务</span>
-  </md-list-item>
-</md-nav-list>
+<mat-nav-list (click)="onClickNav()">
+  <h3 matSubheader>项目</h3>
+  <mat-list-item [routerLink]="['/tasks']">
+    <mat-icon mat-list-icon svgIcon="projects"></mat-icon>
+    <span matLine>首页</span>
+    <span matLine matSubheader>查看我的所有项目</span>
+  </mat-list-item>
+  <h3 matSubheader>日程</h3>
+  <mat-list-item [routerLink]="['/projects']">
+    <mat-icon mat-list-icon svgIcon="month"></mat-icon>
+    <span matLine>月视图</span>
+    <span matLine matSubheader>按月查看我的任务</span>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon mat-list-icon svgIcon="week"></mat-icon>
+    <span matLine>周视图</span>
+    <span matLine matSubheader>按周查看我的任务</span>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon mat-list-icon [svgIcon]="day"></mat-icon>
+    <span matLine>日视图</span>
+    <span matLine matSubheader>按日查看我的任务</span>
+  </mat-list-item>
+</mat-nav-list>

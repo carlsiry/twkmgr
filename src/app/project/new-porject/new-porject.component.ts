@@ -5,7 +5,7 @@
  *  2. 加入表单提交功能实现
  */
 import { Component, OnInit, Inject } from '@angular/core';
-import { MD_DIALOG_DATA, MdDialogRef} from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -19,8 +19,8 @@ export class NewPorjectComponent implements OnInit {
   coverImages: string[];
   form: FormGroup;
   constructor(
-    @Inject(MD_DIALOG_DATA) private data,
-    private dialogRef: MdDialogRef<NewPorjectComponent>,
+    @Inject(MAT_DIALOG_DATA) private data,
+    private dialogRef: MatDialogRef<NewPorjectComponent>,
     private fb: FormBuilder
   ) { }
 

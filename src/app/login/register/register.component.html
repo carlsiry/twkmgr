@@ -5,22 +5,22 @@
     准备加入 tab 变换组件
  -->
 <form class="register-form" [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
-    <md-card class="register-form__card">
-        <!-- <md-tab-group> -->
-          <!-- <md-tab label="账号信息"> -->
-            <md-card-header>
-              <md-card-title>注册：</md-card-title>
-            </md-card-header>
-            <md-card-content>
-                <md-form-field class="field-full-width">
-                  <input mdInput placeholder="亲输入您邮箱地址" type="email" formControlName="email">
-                </md-form-field>
-                <md-form-field class="field-full-width">
-                  <input mdInput placeholder="亲输入您的密码" type="password" formControlName="password">
-                </md-form-field>
-                <md-form-field class="field-full-width">
-                  <input mdInput placeholder="亲再次输入密码" type="password" formControlName="repeat">
-                </md-form-field>
+    <mat-card class="register-form__card">
+        <!-- <mat-tab-group> -->
+          <!-- <mat-tab label="账号信息"> -->
+            <mat-card-header>
+              <mat-card-title>注册：</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field class="field-full-width">
+                  <input matInput placeholder="亲输入您邮箱地址" type="email" formControlName="email">
+                </mat-form-field>
+                <mat-form-field class="field-full-width">
+                  <input matInput placeholder="亲输入您的密码" type="password" formControlName="password">
+                </mat-form-field>
+                <mat-form-field class="field-full-width">
+                  <input matInput placeholder="亲再次输入密码" type="password" formControlName="repeat">
+                </mat-form-field>
                 <!-- 图片列表选择组件 -->
                 <app-image-list-select
                   [cols]="6"
@@ -28,14 +28,14 @@
                   [items]="items"
                   [useSvgIcon]="true"
                   formControlName="avatar"></app-image-list-select>
-                <button md-raised-button class="field-full-width" color="accent" type="submit">注册</button>
-            </md-card-content>
-            <md-card-actions class="text-right">
+                <button mat-raised-button class="field-full-width" color="accent" type="submit">注册</button>
+            </mat-card-content>
+            <mat-card-actions class="text-right">
               <p class="login-form__tip">已经有账户？<a href="#">登录</a></p>
               <p class="login-form__tip">忘记密码？<a href="#">找回</a></p>
-            </md-card-actions>
-          <!-- </md-tab> -->
-          <!-- <md-tab label="个人信息"> -->
+            </mat-card-actions>
+          <!-- </mat-tab> -->
+          <!-- <mat-tab label="个人信息"> -->
             <div class="full-width">
               <app-identity-input formControlName="identity"></app-identity-input>
             </div>
@@ -45,7 +45,7 @@
             <div class="full-width">
               <app-area-list formControlName="address"></app-area-list>
             </div>
-          <!-- </md-tab> -->
-        <!-- </md-tab-group> -->
-    </md-card>
+          <!-- </mat-tab> -->
+        <!-- </mat-tab-group> -->
+    </mat-card>
   </form>

@@ -3,27 +3,27 @@
 <div>
   <span>{{title}}</span>
   <!-- 如果使用的普通图片：换用下面的模版显示 -->
-  <md-icon [svgIcon]="selected" *ngIf="useSvgIcon else imgSelect"
-     class="avatar"></md-icon>
+  <mat-icon [svgIcon]="selected" *ngIf="useSvgIcon else imgSelect"
+     class="avatar"></mat-icon>
   <ng-template #imgSelect>
     <img [src]="selected" alt="image selected" class="cover">
   </ng-template>
 </div>
 <!-- 图片选择列表 -->
 <div class="scroll-container">
-  <md-grid-list [cols]="cols" [rowHeight]="rowHeight">
-    <md-grid-tile *ngFor="let item of items; let i = index">
+  <mat-grid-list [cols]="cols" [rowHeight]="rowHeight">
+    <mat-grid-tile *ngFor="let item of items; let i = index">
       <div class="image-container" (click)="onChange(i)">
-        <md-icon [svgIcon]="item" *ngIf="useSvgIcon else imgItem" class="avatar"></md-icon>
+        <mat-icon [svgIcon]="item" *ngIf="useSvgIcon else imgItem" class="avatar"></mat-icon>
         <ng-template #imgItem>
           <img [src]="item" alt="image item" [ngStyle]="{'width': itemWidth}">
         </ng-template>
         <div class="after">
           <div class="zoom">
-            <md-icon>checked</md-icon>
+            <mat-icon>checked</mat-icon>
           </div>
         </div>
       </div>
-    </md-grid-tile>
-  </md-grid-list>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

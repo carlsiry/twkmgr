@@ -16,7 +16,7 @@
 
 import { NgModule, SkipSelf, Optional } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
-import { MdIconRegistry, MdSidenavModule } from '@angular/material';
+import { MatIconRegistry, MatSidenavModule } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser'
 import { loadSvgResources } from '../utils/svg.util';
 import { AppRoutingModule } from '../app-routing.module';
@@ -57,7 +57,7 @@ import { ServicesModule } from '../services/services.module';
   declarations: [HeaderComponent, SidebarComponent, FooterComponent],
   exports: [
     AppRoutingModule,
-    MdSidenavModule,
+    MatSidenavModule,
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
@@ -73,7 +73,7 @@ export class CoreModule {
   constructor(
     @Optional() @SkipSelf() parent: CoreModule,
     // 跳过导入本模块新实例，从父模块中找实例，找不到就算了（可选）
-    iconRegisgry: MdIconRegistry,
+    iconRegisgry: MatIconRegistry,
     sanitizer: DomSanitizer
   ) {
     if (parent) {

@@ -1,8 +1,8 @@
 
-import { MdIconRegistry } from '@angular/material';
+import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
-export const loadSvgResources = (ir: MdIconRegistry, ds: DomSanitizer) => {
+export const loadSvgResources = (ir: MatIconRegistry, ds: DomSanitizer) => {
     const imgDir = 'assets/img';
     const sidebarDir = `${imgDir}/sidebar`;
     const daysDir = `${imgDir}/days`;

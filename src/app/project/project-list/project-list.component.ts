@@ -9,7 +9,7 @@
  */
 
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { NewPorjectComponent } from '../new-porject/new-porject.component';
 import { InvateComponent } from '../invate/invate.component';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
@@ -34,7 +34,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   @HostBinding('@routeAnim') state;
   projects = [];
   sub: Subscription;
-  constructor(private dialogService: MdDialog, private projectService: ProjectService) { }
+  constructor(private dialogService: MatDialog, private projectService: ProjectService) { }
 
   ngOnInit() {
     this.sub = this.projectService.get('1').subscribe(projects => this.projects = projects);

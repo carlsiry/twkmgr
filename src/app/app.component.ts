@@ -1,6 +1,7 @@
 
 import { Component } from '@angular/core';
-import { OverlayContainer } from '@angular/material';
+// import { OverlayContainer } from '@angular/material';
+import {OverlayContainer} from '@angular/cdk/overlay';
 import { trigger, state, transition, style, animate} from '@angular/animations';
 
 @Component({
