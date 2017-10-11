@@ -1,10 +1,32 @@
-{
+{  "users": [
+    {
+      "password": "wp123456",
+      "name": "王芃",
+      "avatar": "avatars:svg-1",
+      "email": "wpcfan@163.com",
+      "id": "37489e0c-df34-c261-71c4-ce75357e3035",
+      "projectIds": [
+        "Sk2HaTagb"
+      ]
+    },
+    {
+      "password": "Ls123456",
+      "name": "李四",
+      "avatar": "avatars:svg-2",
+      "email": "lisi@163.com",
+      "id": "BkkDvwee-",
+      "projectIds": [
+        "Sk2HaTagb",
+        "Hya1moGb-"
+      ]
+    }
+  ],
   "projects": [
     {
       "id": "1",
       "name": "问题跟踪系统",
       "desc": "用于 Bug 的内部跟踪和管理",
-      "coverImg": "/assets/img/covers/1.jpg",
+      "coverImg": "assets/img/covers/26.jpg",
       "members": [
         "1",
         "2"
@@ -14,7 +36,7 @@
       "id": "2",
       "name": "某某公司 ERP 系统",
       "desc": "为某某公司开发的定制化 ERP 系统",
-      "coverImg": "/assets/img/covers/20.jpg",
+      "coverImg": "assets/img/covers/4.jpg",
       "members": [
         "1"
       ]
