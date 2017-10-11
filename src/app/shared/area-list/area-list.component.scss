@@ -1,0 +1,12 @@
+
+// 2017.10.11 地址控件的样式，街道占整行，真个弹性布局
+.street {
+    flex: 1 1 100%;
+}
+.address-group {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between; 
+}

@@ -1,0 +1,45 @@
+
+<!-- 
+  2017.10.11 省、市、县 下拉选择框，选择数据从知识集中获取，为数据流 provinces$ ...
+    ngModel = _addrss.province ...
+    onProvinceChange 事件绑定 _province Subject 发射新值
+ -->
+<div class="address-group">
+  <div> <!-- 省 -->
+    <md-select
+      [(ngModel)]="_address.province"
+      (change)="onProvinceChange()"
+      placeholder="请输入省份">
+      <md-option *ngFor="let p of provinces$ | async" [value]="p">
+        {{p}}
+      </md-option>
+    </md-select>
+  </div>
+  <div> <!-- 市 -->
+    <md-select
+      [(ngModel)]="_address.city"
+      (change)="onCityChange()"
+      placeholder="请输入市">
+      <md-option *ngFor="let c of cities$ | async" [value]="c">
+        {{c}}
+      </md-option>
+    </md-select>
+  </div>
+  <div> <!-- 县 -->
+    <md-select
+      [(ngModel)]="_address.district"
+      (change)="onDistrictChange()"
+      placeholder="请输入县市区">
+      <md-option *ngFor="let d of districts$ | async" [value]="d">
+        {{d}}
+      </md-option>
+    </md-select>
+  </div>
+  <div class="street"> <!-- 街道 -->
+    <md-form-field class="full-width">
+      <input mdInput type="text" placeholder="请输入街道地址"
+        [(ngModel)]="_address.street"
+        (change)="onStreetChange()">
+    </md-form-field>
+  </div>
+</div>

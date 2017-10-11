@@ -10,6 +10,7 @@
  * 2017.10.08 Carlsiry 从 登录模块 迁移了 图片列表选择组件表单
  * 2017.10.10 Carlsiry 引入了 自动建议选择条表单控件
  * 2017.10.10 Carlsiry 引入 自动完成模块、选中条模块 - chipListComponent
+ * 2017.10.11 Carlsiry 加入选项卡样式组件，增加了身份、地址自定义控件
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,7 +20,7 @@ import {
   MdToolbarModule, MdSlideToggleModule, MdListModule, MdIconModule, MdButtonModule,
   MdInputModule, MdCardModule, MdGridListModule, MdDialogModule, MdAutocompleteModule, MdMenuModule,
   MdCheckboxModule, MdTooltipModule, MdRadioModule, MdDatepickerModule, MdNativeDateModule,
-  MdSelectModule, MdButtonToggleModule, MdChipsModule,
+  MdSelectModule, MdButtonToggleModule, MdChipsModule, MdTabsModule
 } from '@angular/material';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { DirectiveModule } from '../directive/directive.module';
@@ -44,6 +45,7 @@ import { AreaListComponent } from './area-list/area-list.component';
     MdAutocompleteModule,
     MdInputModule,
     MdSelectModule,
+    MdTabsModule,
   ],
   exports: [
     CommonModule,
@@ -72,7 +74,16 @@ import { AreaListComponent } from './area-list/area-list.component';
     AgeInputComponent, // 年龄选择控件
     ImageListSelectComponent,
     ChipsListComponent,
+    IdentityInputComponent,
+    AreaListComponent,
   ],
-  declarations: [ConfirmDialogComponent, AgeInputComponent, ImageListSelectComponent, ChipsListComponent, IdentityInputComponent, AreaListComponent]
+  declarations: [
+    ConfirmDialogComponent,
+    AgeInputComponent,
+    ImageListSelectComponent,
+    ChipsListComponent,
+    IdentityInputComponent,
+    AreaListComponent,
+  ]
 })
 export class SharedModule { }
