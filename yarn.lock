@@ -150,6 +150,26 @@
   dependencies:
     tsickle "^0.21.0"
 
+"@ngrx/core@1.2.0":
+  version "1.2.0"
+  resolved "http://registry.npm.taobao.org/@ngrx/core/download/@ngrx/core-1.2.0.tgz#882b46abafa2e0e6d887cb71a1b2c2fa3e6d0dc6"
+
+"@ngrx/effects@2.0.4":
+  version "2.0.4"
+  resolved "http://registry.npm.taobao.org/@ngrx/effects/download/@ngrx/effects-2.0.4.tgz#418eee5e1032fa66de5bbf1855653bb1951f12a4"
+
+"@ngrx/router-store@1.2.6":
+  version "1.2.6"
+  resolved "http://registry.npm.taobao.org/@ngrx/router-store/download/@ngrx/router-store-1.2.6.tgz#a2eb0ca515e9b367781f1030250dd64bb73c086b"
+
+"@ngrx/store-devtools@3.2.4":
+  version "3.2.4"
+  resolved "http://registry.npm.taobao.org/@ngrx/store-devtools/download/@ngrx/store-devtools-3.2.4.tgz#2ce4d13bf34848a9e51ec87e3b125ed67b51e550"
+
+"@ngrx/store@2.2.3":
+  version "2.2.3"
+  resolved "http://registry.npm.taobao.org/@ngrx/store/download/@ngrx/store-2.2.3.tgz#e7bd1149f1c44208f1cc4744353f0f98a0f1f57b"
+
 "@ngtools/json-schema@1.1.0":
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/@ngtools/json-schema/download/@ngtools/json-schema-1.1.0.tgz#c3a0c544d62392acc2813a42c8a0dc6f58f86922"
@@ -1300,6 +1320,10 @@ decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
 deep-extend@~0.4.0:
   version "0.4.2"
   resolved "http://registry.npm.taobao.org/deep-extend/download/deep-extend-0.4.2.tgz#48b699c27e334bf89f10892be432f6e4c7d34a7f"
+
+deep-freeze-strict@^1.1.1:
+  version "1.1.1"
+  resolved "http://registry.npm.taobao.org/deep-freeze-strict/download/deep-freeze-strict-1.1.1.tgz#77d0583ca24a69be4bbd9ac2fae415d55523e5b0"
 
 default-require-extensions@^1.0.0:
   version "1.0.0"
@@ -3114,6 +3138,12 @@ ncname@1.0.x:
 negotiator@0.6.1:
   version "0.6.1"
   resolved "http://registry.npm.taobao.org/negotiator/download/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
+
+ngrx-store-freeze@^0.1.9:
+  version "0.1.9"
+  resolved "http://registry.npm.taobao.org/ngrx-store-freeze/download/ngrx-store-freeze-0.1.9.tgz#b20f18f21fd5efc4e1b1e05f6f279674d0f70c81"
+  dependencies:
+    deep-freeze-strict "^1.1.1"
 
 no-case@^2.2.0:
   version "2.3.2"

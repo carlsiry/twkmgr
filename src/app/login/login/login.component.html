@@ -1,3 +1,7 @@
+
+<!-- 
+  2017.10.11 修改格言名句使用服务动态的语句和图片
+ -->
 <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm, $event)">
   <mat-card class="login-form__card">
       <mat-card-header>
@@ -25,11 +29,13 @@
   <mat-card class="login-form__card">
     <mat-card-header>
       <mat-card-title>团队精神</mat-card-title>
-      <mat-card-subtitle>从你的全世界路过，把全盛的爱都活过。请往前走，不必回头！</mat-card-subtitle>
+      <mat-card-subtitle>
+        {{(quote$ | async)?.cn}}
+      </mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="assets/img/quote_fallback.jpg" > 
+    <img mat-card-image [src]="(quote$ | async)?.pic" > 
     <mat-card-content>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo illum et dolor dolorum? Assumenda incidunt laudantium maxime
+      <p> {{(quote$ | async)?.en}}</p>
     </mat-card-content>
   </mat-card>
 </form>
