@@ -2,6 +2,7 @@
 /**
  * 2017.10.11 创建城市区域工具函数
  *  - 得到省份、市、县
+ *  下午：逸夫楼： 修复bug
  */
 
 import { city_data } from './area.data';
@@ -17,7 +18,7 @@ export const getProvinces = (): string[] => {
 }
 // 放回指定省份的所有市的名字数组
 export const getCitiesByProvince = (province: string): string[] => {
-    if (!province || city_data[province]) {
+    if (!province || !city_data[province]) {
         return [];
     }
     const cities = [];
@@ -29,7 +30,7 @@ export const getCitiesByProvince = (province: string): string[] => {
 }
 // 返回指定省份的指定市的所有县市区的名字数组
 export const getAreaByCity = (province: string, city: string): string[] => {
-    if (!province || !city || city_data[province][city]) {
+    if (!province || !city || !city_data[province][city]) {
         return null;
     }
     return city_data[province][city];
