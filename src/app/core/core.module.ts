@@ -14,7 +14,9 @@
  *  - 导入服务模块
  * 2017.10.11 Carlsiry
  *  - rxjs 操作符归类到rx.operator.ts 文件中
- *  - 引入了 redux AppStoreModule 
+ *  - 引入了 redux AppStoreModule
+ * 2017.10.12 Carlsiry
+ *  - 引入 redux AppEffectsModule
  */
 
 import { NgModule, SkipSelf, Optional } from '@angular/core';
@@ -29,13 +31,15 @@ import { FooterComponent } from './footer/footer.component';
 import { ServicesModule } from '../services/services.module';
 import './rx.operators';
 import { AppStoreModule } from '../reducers';
+import { AppEffectsModule } from '../effects';
 
 @NgModule({
   imports: [
     SharedModule,
     AppRoutingModule,
     ServicesModule,
-    AppStoreModule
+    AppStoreModule,
+    AppEffectsModule
   ],
   declarations: [HeaderComponent, SidebarComponent, FooterComponent],
   exports: [

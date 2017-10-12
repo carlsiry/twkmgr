@@ -1,6 +1,7 @@
 
 /**
  * 2017.10.11 开始使用 redux
+ * 2017.10.12 使用 Effect 来获取服务器数据
  */
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
@@ -28,14 +29,10 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    private quoteService$: QuoteService,
     private store$: Store<fromRoot.State>
   ) {
-    this.quote$ = this.store$.select(state => state.quote.quote);
-    this.quoteService$.getQuote()
-      .subscribe(q => {
-        this.store$.dispatch({type: actions.QUOTE_SUCCESS, payload: q})
-      })
+    this.quote$ = this.store$.select(fromRoot.getQuote);
+    this.store$.dispatch(new actions.LoadAction(null));
   }
 
   ngOnInit() {
