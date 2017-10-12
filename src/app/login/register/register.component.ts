@@ -2,12 +2,17 @@
 /**
  * 2017.10.11  Carlsiry 逸夫楼
  * 增加针对身份证号控件值的观察订阅，根据值的不同获取生日、地址信息设置到生日、地址表单中
+ * 2017.10.12  Carlsiry 逸夫楼
+ * 使用 effects 来管理 注册状态
  */
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { isValidDate } from '../../utils/date.util';
 import { extractInfo, isValidAddr, getAddrByCode } from '../../utils/identity.util';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../reducers';
+import * as authActions from '../../actions/auth.action';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +24,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
   items: string[] = [];
   sub: Subscription;
   private readonly avatarName = 'avatars';
-  constructor(private fb: FormBuilder) { }
+
+  constructor(
+    private fb: FormBuilder,
+    private store$: Store<fromRoot.State>
+  ) { }
 
   ngOnInit() {
     const img = `${this.avatarName}:svg-${Math.floor(Math.random() * 16).toFixed(0)}`;
@@ -62,6 +71,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if (!valid) {
       return;
     }
-    console.log(value);
+    this.store$.dispatch(new authActions.RegisterAction(value));
   }
 }

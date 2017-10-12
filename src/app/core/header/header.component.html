@@ -1,9 +1,13 @@
 
+<!-- 
+  新增退出按钮和按认证是否显示菜单按钮以及退出按钮
+ -->
 <mat-toolbar color="primary">
-  <button mat-icon-button (click)="openSidenav()">
-    <mat-icon>face</mat-icon>
+  <button mat-icon-button (click)="openSidenav()" *ngIf="(auth$ | async)?.token">
+    <mat-icon>menu</mat-icon>
   </button>
   <span>团队协作平台</span>
   <span class="fill-remaining-space"></span>
   <mat-slide-toggle (change)="triggleDarkTheme($event.checked)">黑夜模式</mat-slide-toggle>
+  <span><a mat-button *ngIf="(auth$ | async)?.token" (click)="logout()">退出</a></span>
 </mat-toolbar>

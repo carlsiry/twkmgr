@@ -2,6 +2,7 @@
 /**
  * 2017.10.09 创建 认证服务 ---Carlsiry
  *  - 注册、登录
+ * 2017.10.11 删除注册函数中的重置用户ID的代码(user.id = null)，因为状态中用户值是不可更改
  */
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers } from '@angular/http';
@@ -23,7 +24,6 @@ export class AuthService {
 
   // 注册
   register(user: User): Observable<Auth> {
-    user.id = null;
     const uri = `${this.config.uri}/${this.domain}`;
     return this.http
       .get(uri, {params: {'email': user.email}})

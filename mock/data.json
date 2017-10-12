@@ -11,15 +11,26 @@
       ]
     },
     {
-      "password": "Ls123456",
+      "password": "123",
       "name": "李四",
       "avatar": "avatars:svg-2",
-      "email": "lisi@163.com",
+      "email": "carl@163.com",
       "id": "BkkDvwee-",
       "projectIds": [
         "Sk2HaTagb",
         "Hya1moGb-"
       ]
+    },
+    {
+      "email": "carlsiry@163.com",
+      "name": null,
+      "password": "123",
+      "repeat": "123",
+      "avatar": "avatars:svg-9",
+      "dateOfBirth": "1994-09-08",
+      "identity": null,
+      "address": null,
+      "id": "r1lqn932Z"
     }
   ],
   "projects": [
@@ -37,7 +48,7 @@
       "id": "2",
       "name": "某某公司 ERP 系统",
       "desc": "为某某公司开发的定制化 ERP 系统",
-      "coverImg": "assets/img/covers/12.jpg",
+      "coverImg": "assets/img/covers/36.jpg",
       "members": [
         "1"
       ]
