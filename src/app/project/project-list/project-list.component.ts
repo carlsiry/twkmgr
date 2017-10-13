@@ -6,6 +6,7 @@
  *    - 引入了 lodash 库，生成范围索引，引入项目图片选择
  *    - 增加缩略图和原图链接地址转换函数
  * 2017.10.10 完善邀请成员的按钮功能，传入成员组到对话框组件，返回成员组（如果新增的话）
+ * 2017.10.13 更改使用 redux 管理项目状态
  */
 
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
@@ -19,6 +20,10 @@ import { ProjectService } from 'app/services/project.service';
 import * as _ from 'lodash';
 import { Project } from '../../domain/project.model';
 import { Subscription } from 'rxjs/Subscription';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../reducers';
+import { Observable } from 'rxjs/Observable';
+import * as actions from '../../actions/project.action';
 
 @Component({
   selector: 'app-project-list',
@@ -32,16 +37,21 @@ import { Subscription } from 'rxjs/Subscription';
 export class ProjectListComponent implements OnInit, OnDestroy {
 
   @HostBinding('@routeAnim') state;
-  projects = [];
-  sub: Subscription;
-  constructor(private dialogService: MatDialog, private projectService: ProjectService) { }
+  projects$: Observable<Project[]>;
+  listAnim$: Observable<number>;
+  constructor(
+    private dialogService: MatDialog,
+    private store$: Store<fromRoot.State>
+  ) {
+    this.store$.dispatch(new actions.LoadAction(null));
+    this.projects$ = this.store$.select(fromRoot.getProjects);
+    this.listAnim$ = this.projects$.map(projects => projects.length);
+  }
 
   ngOnInit() {
-    this.sub = this.projectService.get('1').subscribe(projects => this.projects = projects);
   }
   // 组件卸载时取消项目列表的订阅
   ngOnDestroy() {
-    this.sub.unsubscribe();
   }
   // 新建项目
   openNewProjectDialog() {
@@ -52,9 +62,10 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     );
     newProjectDialogRef.afterClosed().take(1)
       .filter(_ => _)
-      .map(p => ({...p, coverImg: this.buildImgSrc(p.coverImg)}))
-      .switchMap(project => this.projectService.add(project))
-      .subscribe(addedProject => this.projects = [...this.projects, addedProject]);
+      .map(project => ({...project, coverImg: this.buildImgSrc(project.coverImg)}))
+      .subscribe(p => {
+        this.store$.dispatch(new actions.AddAction(p));
+      });
   }
   // 打开邀请组成员对话框
   openInvateDialog() {
@@ -69,10 +80,8 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     newProjectDialogRef.afterClosed().take(1)
       .filter(_ => _)
       .map(p => ({...p, id: project.id, coverImg: this.buildImgSrc(p.coverImg)}))
-      .switchMap(toUpdateProject => this.projectService.update(toUpdateProject))
-      .subscribe(updatedProject => {
-        const index = this.projects.map(p => p.id).indexOf(project.id);
-        this.projects = [...this.projects.slice(0, index), updatedProject, ...this.projects.slice(index + 1)];
+      .subscribe(toUpdateProject => {
+        this.store$.dispatch(new actions.UpdateAction(toUpdateProject));
       });
   }
   // 确认是否删除项目
@@ -80,10 +89,8 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     const confirmDialogRef = this.dialogService.open(ConfirmDialogComponent);
     confirmDialogRef.afterClosed().take(1)
       .filter(_ => _)
-      .switchMap(_ => this.projectService.del(project))
       .subscribe(result => {
-        console.log(result);
-        this.projects = this.projects.filter(p => p.id !== project.id);
+        this.store$.dispatch(new actions.DeleteAction(project));
       });
   }
   // 生成40张项目图片的缩略图链接地址

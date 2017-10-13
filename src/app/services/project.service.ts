@@ -3,11 +3,14 @@
  * 2017.10.08 创建 项目服务 ---Carlsiry
  *    包含 CRUD 项目 等功能
  * 2017.10.09 修复删除项目功能：没有任务列表的项目，订阅流出现问题
+ * 2017.10.13 新增邀请服务的功能实现
  */
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Project } from '../domain';
 import { Observable } from 'rxjs/Observable';
+import { User } from '../domain/user.model';
+import * as _ from 'lodash';
 
 @Injectable()
 export class ProjectService {
@@ -55,5 +58,18 @@ export class ProjectService {
     return this.http
       .get(uri, {params: {'members_like': userId}})
       .map(res => res.json() as Project[]);
+  }
+  // 邀请成员
+  invite(projectId: string, users: User[]): Observable<Project> {
+    const uri = `${this.config.uri}/${this.domain}/${projectId}`;
+    return this.http.get(uri)
+      .map(res => res.json())
+      .switchMap((project: Project) => {
+        const existingMembers = project.members
+        const invitedIds = users.map(user => user.id);
+        const newIds = _.union(existingMembers, invitedIds);
+        return this.http.patch(uri, JSON.stringify({members: newIds}), {headers: this.headers})
+          .map(res => res.json());
+      });
   }
 }
