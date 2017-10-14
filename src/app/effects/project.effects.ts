@@ -1,6 +1,7 @@
 
 /**
  * 2017.10.12 创建用于 项目业务 的 effects流
+ *      10.14 增加 处理选择项目到任务列表的流程
  */
 import { Injectable } from '@angular/core';
 import { Actions, toPayload, Effect} from '@ngrx/effects';
@@ -11,6 +12,7 @@ import { AuthService } from '../services/auth.service';
 import { go } from '@ngrx/router-store';
 import { ProjectService } from 'app/services/project.service';
 import * as fromRoot from '../reducers';
+import * as listActions from '../actions/task-list.action';
 
 @Injectable()
 export class ProjectEffects {
@@ -69,6 +71,20 @@ export class ProjectEffects {
             .map(p => new actions.InviteSuccessAction(p))
             .catch(err => Observable.of(new actions.InviteFailAction(JSON.stringify(err))))
         );
+
+    // 选择项目流
+    @Effect()
+    selectProject$: Observable<Action> = this.actions$
+        .ofType(actions.ActionTypes.SELECT_PROJECT)
+        .map(toPayload)
+        .map(project => go([`/tasklists/${project.id}`]));
+
+    // 选择项目同时加载 任务列表： 发起 加载任务列表信号
+    @Effect()
+    loadTaskLists$: Observable<Action> = this.actions$
+        .ofType(actions.ActionTypes.SELECT_PROJECT)
+        .map(toPayload)
+        .map(project => new listActions.LoadAction(project.id));
 
     constructor (
         private actions$: Actions,

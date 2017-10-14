@@ -3,7 +3,8 @@
  * 2017.10.11 创建 Store 模块，定义初始状态和reducer
  * 2017.10.12 使用缓存选择函数得到具体状态数据
  *      - 加入了认证的State和reducer
- *     10.13 - 加入了项目的状态
+ *     10.13 - 加入了项目的状态管理
+ *     10.14 - 加入了任务列表的状态管理
  */
 import { NgModule } from '@angular/core';
 import { StoreModule, combineReducers, ActionReducer } from '@ngrx/store';
@@ -11,9 +12,12 @@ import { RouterStoreModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeFreeze } from 'ngrx-store-freeze';
 
+// 子 reducer: 包含 state接口类型 和 state初始状态
 import * as fromQuote from './quote.reducer';
 import * as fromAuth from './auth.reducer';
 import * as fromProject from './project.reducer';
+import * as fromTaskList from './task-list.reducer';
+
 import { compose } from '@ngrx/core/compose';
 import { createSelector } from 'reselect';
 
@@ -25,24 +29,34 @@ export interface State {
     quote: fromQuote.State
     auth: Auth,
     project: fromProject.State,
+    taskList: fromTaskList.State,
 };
+
+// 快捷获取一些具体状态
 export const getQuoteState = (state: State) => state.quote;
 export const getAuthState = (state: State) => state.auth;
 export const getProjectState = (state: State) => state.project;
+export const getTaskListState = (state: State) => state.taskList;
+
+// 快捷获取一些具体状态详细数据
 export const getQuote = createSelector(getQuoteState, fromQuote.getQuote);
 export const getProjects = createSelector(getProjectState, fromProject.getAllProjects);
-// 真个应用的初始状态
+export const getTaskLists = createSelector(getTaskListState, fromTaskList.getSelected);
+
+// 整个应用的初始状态
 export const initialState: State = {
     quote: fromQuote.initialState,
     auth: fromAuth.initialState,
     project: fromProject.initialState,
+    taskList: fromTaskList.initialState,
 };
 // 归集器字典
 export const reducers = {
     quote: fromQuote.reducer,
     auth: fromAuth.reducer,
     project: fromProject.reducer,
-}
+    taskList: fromTaskList.reducer,
+};
 // 生产环境和开发环境下 归集器
 const productionReducers: ActionReducer<State> = combineReducers(reducers);
 const developmentReducers: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers)

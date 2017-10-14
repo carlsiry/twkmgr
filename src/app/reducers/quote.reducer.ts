@@ -2,6 +2,7 @@
 /**
  * 2017.10.11 创建初步的归集器
  * 2017.10.12 使用强类型操作类型、使用函数得到状态数据
+ *      10.14 更改了加载成功返回的状态格式
  */
 
 import * as actions from '../actions/quote.action';
@@ -22,7 +23,7 @@ export const initialState: State = {
 export function reducer(state = initialState, action: actions.Actions ): State {
     switch (action.type) {
         case actions.ActionTypes.LOAD_SUCCESS: {
-            return { ...state, quote: <Quote>action.payload};
+            return { quote: <Quote>action.payload};
         }
         case actions.ActionTypes.LOAD_FAIL:
         default: {

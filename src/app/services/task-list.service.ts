@@ -2,6 +2,7 @@
 /**
  * 2017.10.08 创建 任务列表 服务 ---Carlsiry
  *    包含 CRUD 任务列表 等功能
+ *      10.14 增加任务列表时 去除 taskList.id = null
  */
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers } from '@angular/http';
@@ -19,7 +20,6 @@ export class TaskListService {
 
   // POST 增加任务列表
   add(taskList: TaskList): Observable<TaskList> {
-    taskList.id = null;
     const url = `${this.config.uri}/${this.domain}`;
     return this.http
       .post(url, JSON.stringify(taskList), {headers: this.headers})
