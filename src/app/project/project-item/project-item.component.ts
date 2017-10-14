@@ -1,3 +1,7 @@
+
+/**
+ *  2017.10.14 Carlsiry 增加选择卡片的跳转到任务列表的的操作
+ */
 import { Component, OnInit, Input, Output, EventEmitter, HostBinding, HostListener } from '@angular/core';
 import { cardAnim } from '../../anims/card.anim';
 
@@ -15,6 +19,7 @@ export class ProjectItemComponent implements OnInit {
   @Output() invate = new EventEmitter<void>();
   @Output() updateProject = new EventEmitter<void>();
   @Output() deleteProject = new EventEmitter<void>();
+  @Output() selectedProject = new EventEmitter<void>();
   @HostBinding('@cardAnim') cardState;
 
   constructor() { }
@@ -31,14 +36,20 @@ export class ProjectItemComponent implements OnInit {
     this.cardState = '';
   }
 
-  onInvate() {
+  // 防止冒泡以免触发项目卡片的选择操作
+  onInvate(ev: Event) {
+    ev.preventDefault();
     this.invate.emit();
   }
-  onClickUpdateProject() {
+  onClickUpdateProject(ev: Event) {
+    ev.preventDefault();
     this.updateProject.emit();
   }
-  onClickDeleteProject() {
+  onClickDeleteProject(ev: Event) {
+    ev.preventDefault();
     this.deleteProject.emit();
   }
-
+  onSelectedProject() {
+    this.selectedProject.emit();
+  }
 }

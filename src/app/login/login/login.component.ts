@@ -5,7 +5,6 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { QuoteService } from '../../services/quote.service';
 import { Quote } from '../../domain/quote.model';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';

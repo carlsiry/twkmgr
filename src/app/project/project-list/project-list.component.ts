@@ -7,6 +7,7 @@
  *    - 增加缩略图和原图链接地址转换函数
  * 2017.10.10 完善邀请成员的按钮功能，传入成员组到对话框组件，返回成员组（如果新增的话）
  * 2017.10.13 更改使用 redux 管理项目状态
+ *      10.14 选择项目跳转至项目的任务列表
  */
 
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
@@ -92,6 +93,10 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         this.store$.dispatch(new actions.DeleteAction(project));
       });
+  }
+  // 触发选择项目到任务列表
+  onSelectedProject(project) {
+    this.store$.dispatch(new actions.SelectProjectAction(project));
   }
   // 生成40张项目图片的缩略图链接地址
   private getThumbnails() {

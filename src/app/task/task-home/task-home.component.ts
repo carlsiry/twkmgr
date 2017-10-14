@@ -1,3 +1,7 @@
+
+/**
+ * 2017.10.14 删除写死的数据处理，从状态树中获取数据
+ */
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { NewTaskComponent } from '../new-task/new-task.component';
@@ -5,6 +9,12 @@ import { CopyTaskComponent } from '../copy-task/copy-task.component';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { NewTaskListComponent } from '../new-task-list/new-task-list.component';
 import { slideToRight } from '../../anims/router.anim';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../reducers';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { TaskList } from '../../domain/task-list.model';
+import * as actions from '../../actions/task-list.action';
 
 @Component({
   selector: 'app-task-home',
@@ -17,79 +27,17 @@ import { slideToRight } from '../../anims/router.anim';
 export class TaskHomeComponent implements OnInit {
 
   @HostBinding('@routeAnim') state;
-  lists = [
-    {
-      id: 1,
-      name: '待办事项',
-      tasks: [
-        {
-          id: 1,
-          desc: '任务一：去辛巴克买咖啡',
-          completed: true,
-          priority: 1,
-          owner: {
-            id: 1,
-            name: '章三',
-            avatar: 'avatars:svg-11',
-            dueDate: new Date()
-          },
-          reminder: new Date()
-        },
-        {
-          id: 2,
-          desc: '完成老板的任务先去干么接口连接将发送旅客的去辛巴克买咖啡',
-          completed: false,
-          priority: 2,
-          owner: {
-            id: 1,
-            name: '章三',
-            avatar: 'avatars:svg-1',
-            dueDate: new Date()
-          }
-        },
-        {
-          id: 3,
-          desc: '任务一：去辛巴克买咖啡',
-          completed: false,
-          priority: 3,
-          owner: {
-            id: 1,
-            name: '章三',
-            avatar: 'avatars:svg-2',
-            // dueDate: new Date()
-          },
-          reminder: new Date()
-        }
-      ]
-    },
-    {
-      id: 2,
-      name: '完成事项',
-      tasks: [
-        {
-          id: 1,
-          desc: '任务一：去辛巴克买咖啡',
-          completed: true,
-          priority: 1,
-        },
-        {
-          id: 1,
-          desc: '任务一：去辛巴克买咖啡',
-          completed: false,
-          priority: 3,
-          owner: {
-            id: 1,
-            name: '章三',
-            avatar: 'avatars:svg-5',
-            dueDate: new Date()
-          },
-          reminder: new Date()
-        }
-      ]
-    },
-  ];
+  projectId$: Observable<string>;
+  lists$: Observable<TaskList[]>;
 
-  constructor(private mdDialog: MatDialog) { }
+  constructor(
+    private mdDialog: MatDialog,
+    private store: Store<fromRoot.State>,
+    private route: ActivatedRoute,
+  ) {
+    this.projectId$ = this.route.paramMap.pluck('id');
+    this.lists$ = this.store.select(fromRoot.getTaskLists);
+  }
 
   ngOnInit() {
   }
@@ -99,20 +47,28 @@ export class TaskHomeComponent implements OnInit {
   }
   // 打开移动所有任务到其他列表的对话框
   openMoveAllTaskDialog() {
-    this.mdDialog.open(CopyTaskComponent, {data: {lists: this.lists}});
+    // this.mdDialog.open(CopyTaskComponent, {data: {lists: this.lists}});
   }
-  openUpdateListDialog() {
-    this.mdDialog.open(NewTaskListComponent, {data: {title: '修改列表名称'}})
+  openUpdateListDialog(list: TaskList) {
+    const dialogRef = this.mdDialog.open(NewTaskListComponent, {data: {title: '修改列表名称', listName: list.name}})
+    dialogRef.afterClosed().take(1)
+      .subscribe(result => this.store.dispatch(new actions.UpdateAction({...result, id: list.id})));
   }
-  openConfirmDeleteDialog() {
-    this.mdDialog.open(ConfirmDialogComponent);
+  openConfirmDeleteDialog(list: TaskList) {
+    const dialogRef = this.mdDialog.open(ConfirmDialogComponent);
+    dialogRef.afterClosed().take(1).filter(_ => _)
+      .subscribe(result => this.store.dispatch(new actions.DeleteAction(list)));
   }
   openUpdateTaskDialog() {
     console.log('update task');
     this.mdDialog.open(NewTaskComponent, {data: {title: '修改任务'}})
   }
-  openNewTaskListDialog() {
-    this.mdDialog.open(NewTaskListComponent, {data: {title: '新建任务列表'}})
+  openNewTaskListDialog(ev: Event) {
+    const dialog = this.mdDialog.open(NewTaskListComponent, {data: {title: '新建任务列表'}})
+    dialog.afterClosed().take(1).filter(_ => _)
+      .subscribe(result => {
+        console.log(result);
+        return this.store.dispatch(new actions.AddAction(result))});
   }
 
   addQuickTask(desc: string) {

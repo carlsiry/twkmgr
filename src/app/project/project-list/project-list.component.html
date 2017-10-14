@@ -1,9 +1,11 @@
 
 <!-- 2017.10.09 修正更新项目的接口调用 -->
 <!-- 2017.10.13 使用 State 中的状态渲染 listAnim$ projects$-->
+<!-- 2017.10.14 增加 (selectedProject) event -->
 <div class="container" [@listAnim]="listAnim$ | async">
   <app-project-item *ngFor="let project of (projects$ | async)"
     [item]="project" class="card"
+    (selectedProject)="onSelectedProject(project)"
     (invate)="openInvateDialog()"
     (updateProject)="openUpdateProjectDialog(project)"
     (deleteProject)="openConfirmDeleteProjectDialog(project)">
