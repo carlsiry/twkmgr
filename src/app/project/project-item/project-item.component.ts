@@ -1,6 +1,7 @@
 
 /**
  *  2017.10.14 Carlsiry 增加选择卡片的跳转到任务列表的的操作
+ *  2017.10.15 Carlsiry 增加 编辑 邀请 删除按钮的冒泡处理 ： ev.stopPropagation();
  */
 import { Component, OnInit, Input, Output, EventEmitter, HostBinding, HostListener } from '@angular/core';
 import { cardAnim } from '../../anims/card.anim';
@@ -39,14 +40,17 @@ export class ProjectItemComponent implements OnInit {
   // 防止冒泡以免触发项目卡片的选择操作
   onInvate(ev: Event) {
     ev.preventDefault();
+    ev.stopPropagation();
     this.invate.emit();
   }
   onClickUpdateProject(ev: Event) {
     ev.preventDefault();
+    ev.stopPropagation();
     this.updateProject.emit();
   }
   onClickDeleteProject(ev: Event) {
     ev.preventDefault();
+    ev.stopPropagation();
     this.deleteProject.emit();
   }
   onSelectedProject() {
