@@ -43,6 +43,7 @@
       "desc": "用于 Bug 的内部跟踪和管理",
       "coverImg": "assets/img/covers/1.jpg",
       "members": [
+        "37489e0c-df34-c261-71c4-ce75357e3035",
         "BkkDvwee-"
       ]
     },
@@ -50,7 +51,7 @@
       "id": "Hya1moGb-",
       "name": "某某公司 ERP 系统",
       "desc": "为某某公司开发的定制化 ERP 系统",
-      "coverImg": "assets/img/covers/4.jpg",
+      "coverImg": "assets/img/covers/24.jpg",
       "members": [
         "BkkDvwee-",
         "37489e0c-df34-c261-71c4-ce75357e3035"

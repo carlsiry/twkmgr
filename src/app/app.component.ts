@@ -1,21 +1,15 @@
+/**
+ * 2017.10.17 Carlisry 逸夫楼 移除不需要的测试代码
+ */
 
 import { Component } from '@angular/core';
-// import { OverlayContainer } from '@angular/material';
-import {OverlayContainer} from '@angular/cdk/overlay';
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { trigger, state, transition, style, animate} from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  // 为了测试动画写法定义的元数据
-  // animations: [
-  //   trigger('squareTrigger', [
-  //     state('green', style({'background-color': 'red', 'height': '200px'})),
-  //     state('red', style({'background-color': 'green'})),
-  //     transition('red <=> green', animate(1000)),
-  //   ])
-  // ]
 })
 export class AppComponent {
 
@@ -29,12 +23,4 @@ export class AppComponent {
     this.darkTheme = checked;
     this.oc.getContainerElement().classList.add('myapp-dark-theme');
   }
-  // 为了测试动画写法的状态转换代码
-  // onClick() {
-  //   if (this.squareState === 'green') {
-  //     this.squareState = 'red';
-  //   } else {
-  //     this.squareState = 'green';
-  //   }
-  // }
 }
