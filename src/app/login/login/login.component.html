@@ -1,6 +1,7 @@
 
 <!-- 
   2017.10.11 修改格言名句使用服务动态的语句和图片
+  2017.10.16 去除了登录表单邮箱的后缀
  -->
 <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm, $event)">
   <mat-card class="login-form__card">
@@ -11,9 +12,6 @@
       <mat-card-content>
           <mat-form-field class="field-full-width">
             <input matInput placeholder="邮箱地址" type="email" formControlName="email">
-            <span matSuffix>@163.com</span>
-            <!-- <mat-error *ngIf="userFormControl.hasError('required')">not correct!</mat-error> -->
-            <!-- <mat-error *ngIf="userFormControl.hasError('pattern')">邮箱格式不正确啊!</mat-error> -->
           </mat-form-field>
           <mat-form-field class="field-full-width">
             <input matInput placeholder="用户密码" type="password" formControlName="password">
