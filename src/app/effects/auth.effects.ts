@@ -8,13 +8,12 @@ import { Observable } from 'rxjs/Observable';
 import { Action } from '@ngrx/store';
 import * as actions from '../actions/auth.action';
 import { AuthService } from '../services/auth.service';
-import { User } from '../domain/user.model';
 import { go } from '@ngrx/router-store';
 
 @Injectable()
 export class AuthEffects {
 
-    // 登录流：捕获登录信号 -> 使用认证服务 -> 成功：发起 登录成功信号
+    // 登录流：捕获"登录"([Auth] login)信号 -> 使用认证服务 -> 成功：发起 登录成功信号
     //                                 -> 失败：发起 登录失败信号
     @Effect()
     login$: Observable<Action> = this.actions$
@@ -24,13 +23,21 @@ export class AuthEffects {
             .map(auth => new actions.LoginSuccessAction(auth))
             .catch(err => Observable.of(new actions.LoginFailAction(JSON.stringify(err))))
         );
+    //  ||
+    //  V
+    // 登录成功流： 捕获"登录成功"([Auth] login success)信号 -> 路由跳转至项目路由
+    @Effect()
+    loginAndNavigate$: Observable<Action> = this.actions$
+        .ofType(actions.ActionTypes.LOGIN_SUCCESS)
+        .map(_ => go(['/projects']));
+
     // 注册流：捕获注册信号 -> 使用认证服务 -> 成功： 发起 注册成功信号
     //                                 -> 失败： 发起 注册失败信号
     @Effect()
     register$: Observable<Action> = this.actions$
         .ofType(actions.ActionTypes.REGISTER)
         .map(toPayload)
-        .switchMap((user: User) => this.service$.register(user)
+        .switchMap((user) => this.service$.register(user)
             .map(auth => new actions.RegisterSuccessAction(auth))
             .catch(err => Observable.of(new actions.RegisterFailAction(JSON.stringify(err))))
         );
@@ -39,11 +46,7 @@ export class AuthEffects {
     logout$: Observable<Action> = this.actions$
         .ofType(actions.ActionTypes.LOGOUT)
         .map(_ => go(['/']));
-    // 登录成功流： 捕获 登录成功信号 -> 路由跳转至项目路由
-    @Effect()
-    loginAndNavigate$: Observable<Action> = this.actions$
-        .ofType(actions.ActionTypes.LOGIN_SUCCESS)
-        .map(_ => go(['/projects']));
+
     // 注册成功流： 捕获 注册成功信号 -> 路由跳转至项目路由
     @Effect()
     registerAndNavigate$: Observable<Action> = this.actions$

@@ -6,6 +6,8 @@
  *    - 获取同一个项目的用户们
  *    - 为用户添加、移除项目
  *    - 批量更新用户添加项目
+ * 2017.10.16 修复获取同一个项目的用户们 json-server 不能正确获取数据的问题
+ *    - ?projectIds=1 => ?projectIds_like=1
  */
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers} from '@angular/http';
@@ -31,7 +33,7 @@ export class UserService {
   // 获取同一个项目的用户们
   getUsersByProject(projectId: string): Observable<User[]> {
     const uri = `${this.config.uri}/${this.domain}`;
-    return this.http.get(uri, {params: {'projectId': projectId}})
+    return this.http.get(uri, {params: {'projectIds_like': projectId}})
       .map(res => res.json() as User[]);
   }
   // 为用户添加项目

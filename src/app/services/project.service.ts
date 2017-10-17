@@ -4,6 +4,8 @@
  *    包含 CRUD 项目 等功能
  * 2017.10.09 修复删除项目功能：没有任务列表的项目，订阅流出现问题
  * 2017.10.13 新增邀请服务的功能实现
+ * 2017.10.16 修复邀请成员对话框中删除选择的成员提交信息不成功的问题
+ *    - 原来是只能增加，现在可以增加删除
  */
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers } from '@angular/http';
@@ -62,13 +64,11 @@ export class ProjectService {
   // 邀请成员
   invite(projectId: string, users: User[]): Observable<Project> {
     const uri = `${this.config.uri}/${this.domain}/${projectId}`;
+    const invitedIds = users.map(user => user.id);
     return this.http.get(uri)
       .map(res => res.json())
       .switchMap((project: Project) => {
-        const existingMembers = project.members
-        const invitedIds = users.map(user => user.id);
-        const newIds = _.union(existingMembers, invitedIds);
-        return this.http.patch(uri, JSON.stringify({members: newIds}), {headers: this.headers})
+        return this.http.patch(uri, JSON.stringify({members: invitedIds}), {headers: this.headers})
           .map(res => res.json());
       });
   }

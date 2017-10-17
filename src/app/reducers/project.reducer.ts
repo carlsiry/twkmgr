@@ -1,6 +1,7 @@
 
 /**
  * 2017.10.13 增加 用于项目的几种呢处理
+ * 2017.10.16 修复 邀请用户成功时信号没有处理表的问题
  */
 import * as actions from '../actions/project.action';
 import { Project } from '../domain/project.model';
@@ -26,6 +27,7 @@ export function reducer(state = initialState, action: actions.Actions ): State {
         case actionTypes.ADD_SUCCESS: {
             return addProject(state, action);
         }
+        case actionTypes.INVITE_SUCCESS:
         case actionTypes.UPDATE_SUCCESS: {
             return updateProject(state, action);
         }

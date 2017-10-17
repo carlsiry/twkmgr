@@ -35,7 +35,7 @@ export const ActionTypes = {
 // 加载 任务列表信号
 export class LoadAction implements Action {
     type = ActionTypes.LOAD;
-
+    // 根据 项目ID string 加载
     constructor(public payload: string) { }
   }
 export class LoadSuccessAction implements Action {

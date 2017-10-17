@@ -1,10 +1,12 @@
 
 /**
  * 2017.10.12 创建关于项目状态的变更信号: 增、栅、改、查、邀、选
+ * 2017.10.16 修复 邀请成员信号中的附加信息类型
  */
 import { Action } from '@ngrx/store';
 import { type } from '../utils/type.util';
 import { Project } from '../domain/project.model';
+import { User } from '../domain/user.model';
 
 // 信号类型
 export const ActionTypes = {
@@ -94,12 +96,12 @@ export class DeleteFailAction implements Action {
 export class InviteAction implements Action {
   type = ActionTypes.INVITE;
 
-  constructor(public payload: null) { }
+  constructor(public payload: {projectId: string, members: User[]}) { }
 }
 export class InviteSuccessAction implements Action {
   type = ActionTypes.INVITE_SUCCESS;
 
-constructor(public payload: Project) { }
+  constructor(public payload: Project) { }
 }
 export class InviteFailAction implements Action {
   type = ActionTypes.INVITE_FAIL;

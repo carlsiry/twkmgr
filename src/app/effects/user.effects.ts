@@ -1,6 +1,10 @@
 
 /**
  * 2017.10.14 创建用于 用户业务 的 effects流
+ *      1. 项目列表组件加载项目成功后，会发起 “加载用户” 信号
+ *      2. @UserEffects 捕获到 “加载“ 信号后，会调用 @UserService 根据项目ID获取一个用户列表
+ *          获取用户列表成功后，发起 “加载成功” 信号，@Reducer 根据“加载成功”信号中的用户列表跟新到 @Store中
+ * 2017.10.17 修复根据项目加载相关用户请求被打断的操作（switchMap=>mergeMap）
  */
 import { Injectable } from '@angular/core';
 import { Actions, toPayload, Effect} from '@ngrx/effects';
@@ -14,12 +18,13 @@ import { UserService } from '../services/user.service';
 export class UserEffects {
 
     //                                              -> 失败：发起"加载失败"信号
-    // 加载流程：捕获"加载"信号 -> 调用服务获取列表内容 -> 成功：发起"加载成功"信号
+    // 加载流程：捕获"加载"信号 -> 调用服务获取用户列表 -> 成功：发起"加载成功"信号
     @Effect()
     loadUsers$: Observable<Action> = this.actions$
         .ofType(actions.ActionTypes.LOAD)
         .map(toPayload)
-        .switchMap(projectId => this.service$.getUsersByProject(projectId)
+        // 这里不能使用 switchMap 服务定义的http请求只在订阅时才发射，所以新的信号进来前面的请求流会被打断
+        .mergeMap(projectId => this.service$.getUsersByProject(projectId)
             .map(users => new actions.LoadSuccessAction(users))
             .catch(err => Observable.of(new actions.LoadFailAction(JSON.stringify(err))))
         );

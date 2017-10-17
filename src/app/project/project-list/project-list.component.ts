@@ -8,8 +8,11 @@
  * 2017.10.10 完善邀请成员的按钮功能，传入成员组到对话框组件，返回成员组（如果新增的话）
  * 2017.10.13 更改使用 redux 管理项目状态
  *      10.14 选择项目跳转至项目的任务列表
+ * 2017 10.16 修复邀请成员用户不能正确获取成员信息的问题
+ *    - 推送流被打断 -> megerMap
  */
 
+// #region importer
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { NewPorjectComponent } from '../new-porject/new-porject.component';
@@ -25,6 +28,7 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import { Observable } from 'rxjs/Observable';
 import * as actions from '../../actions/project.action';
+// #endregion
 
 @Component({
   selector: 'app-project-list',
@@ -69,8 +73,12 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       });
   }
   // 打开邀请组成员对话框
-  openInvateDialog() {
-    this.dialogService.open(InvateComponent, {data: {members: []}});
+  openInvateDialog(project: Project) {
+    this.store$.select(fromRoot.getProjectUsers(project.id))
+      .map(users => this.dialogService.open(InvateComponent, {data: {members: users}}))
+      .take(1)
+      .switchMap(dialogRef => dialogRef.afterClosed().take(1).filter(_ => _))
+      .subscribe(val => this.store$.dispatch(new actions.InviteAction({projectId: project.id, members: val})));
   }
   // 打开更新项目对话框
   openUpdateProjectDialog(project: Project) {

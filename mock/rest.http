@@ -40,3 +40,15 @@ Content-Type: application/json
 
 ###
 DELETE  http://localhost:3000/taskLists/1 HTTP/1.1
+
+###
+GET http://localhost:3000/users
+Content-Type: application/json
+
+###
+GET http://localhost:3000/users?projectIds_like=Sk2HaTagb
+Content-Type: application/json
+
+###
+GET http://localhost:3000/users?projectIds_like=Hya1moGb-
+Content-Type: application/json
