@@ -1,15 +1,16 @@
 
 <!-- 2017.10.14 修改跟新、删除的事件处理以及任务列表流的处理 -->
+<!-- 2017.10.16 把数据传入到针对项目的操作函数中 -->
 <div class="task-lists">
   <app-task-list class="list-container"
     *ngFor="let list of (lists$ | async)">
     <app-task-header 
       [header]="list.name"
-      (addNewTask)="openAddNewTaskDialog()"
-      (moveAllTask)="openMoveAllTaskDialog()"
+      (addNewTask)="openAddNewTaskDialog(list)"
+      (moveAllTask)="openMoveAllTaskDialog(list)"
       (updateList)="openUpdateListDialog(list)"
       (deleteList)="openConfirmDeleteDialog(list)"></app-task-header>
-    <app-quick-task (quickTask)="addQuickTask($event)"></app-quick-task>
+    <app-quick-task (quickTask)="addQuickTask($event, list)"></app-quick-task>
     <app-task-item
       *ngFor="let task of list.tasks"
       [item]="task"

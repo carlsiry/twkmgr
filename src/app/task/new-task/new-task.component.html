@@ -1,26 +1,37 @@
-<form>
+
+<!-- 2017.10.16 修改了增加任务的表单 -->
+<form [formGroup]="form" (ngSubmit)="onSubmit($event, form)">
     <h2 matDialogTitle>{{title}}</h2>
     <div mat-dialog-content>
       <mat-form-field class="field-full-width">
-        <input matInput placeholder="任务描述" type="text">
+        <input matInput placeholder="任务描述" type="text" formControlName="desc">
       </mat-form-field>
-      <mat-radio-group>
+      <mat-radio-group formControlName="priority">
         <mat-radio-button *ngFor="let priority of priorities" [value]="priority.value">
           {{priority.label}} </mat-radio-button>
       </mat-radio-group>
+      <div class="full-width">
+        <app-chips-list [label]="'更改执行者'" [multiple]="false" formControlName="owner"></app-chips-list>
+      </div>
       <mat-form-field class="field-full-width">
-        <input matInput [matDatepicker]="dueDatepicker" placeholder="任务截止日期">
+        <input matInput [matDatepicker]="dueDatepicker" placeholder="任务截止日期" formControlName="dueDate">
         <mat-datepicker-toggle matSuffix [for]="dueDatepicker"></mat-datepicker-toggle>
       </mat-form-field>
       <mat-datepicker #dueDatepicker></mat-datepicker>
       <mat-form-field class="field-full-width">
-        <input matInput [matDatepicker]="reminderDatepicker" placeholder="任务提醒日期">
+        <input matInput [matDatepicker]="reminderDatepicker" placeholder="任务提醒日期" formControlName="reminder">
         <mat-datepicker-toggle matSuffix [for]="reminderDatepicker"></mat-datepicker-toggle>
       </mat-form-field>
       <mat-datepicker #reminderDatepicker></mat-datepicker>
+      <div class="full-width">
+        <app-chips-list [label]="'更改参与者'" [multiple]="true" formControlName="followers"></app-chips-list>
+      </div>
+      <div class="full-width">
+        <textarea madInput placeholder="备注" formControlName="remark"></textarea>
+      </div>
     </div>
     <div mat-dialog-actions>
-      <button type="button" mat-raised-button color="primary">保存</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">保存</button>
       <button type="button" mat-raised-button matDialogClose>关闭</button>
     </div>
   </form>

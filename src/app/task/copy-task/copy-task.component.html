@@ -1,13 +1,14 @@
 
-<form>
+<!-- 2017.10.16 加入选择列表的表单 -->
+<form [formGroup]="form" (ngSubmit)="onSubmit($event, form)">
     <h2 matDialogTitle>移动本列表所有内容：</h2>
     <div mat-dialog-content>
-      <mat-select placeholder="请选择目标列表" class="field-full-width">
-        <mat-option *ngFor="let list of lists">{{list.name}}</mat-option>
+      <mat-select placeholder="请选择目标列表" class="field-full-width" formControlName="targetListId">
+        <mat-option *ngFor="let list of lists" [value]="list.id">{{list.name}}</mat-option>
       </mat-select>
     </div>
     <div mat-dialog-actions>
-      <button type="button" mat-raised-button color="primary">保存</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">保存</button>
       <button type="button" mat-raised-button matDialogClose>关闭</button>
     </div>
-  </form>
+</form>
