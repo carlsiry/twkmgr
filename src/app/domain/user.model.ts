@@ -9,10 +9,10 @@
 export interface User {
     id?: string;
     email: string;
-    password: string;
+    password?: string;
     name: string;
-    avatar: string;
-    projectIds: string[]; // 一个用户参与的多个项目列表的 ID 列表
+    avatar?: string;
+    projectIds?: string[]; // 一个用户参与的多个项目列表的 ID 列表
     address?: Address,
     identity?: Identity,
     dateOfBirth?: string
