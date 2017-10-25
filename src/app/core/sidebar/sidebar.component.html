@@ -1,22 +1,30 @@
+
+<!-- 2017.10.25  把所有的用户项目显示 -->
+<!--            添加跳转对应日历视图的路由 -->
 <mat-nav-list (click)="onClickNav()">
   <h3 matSubheader>项目</h3>
-  <mat-list-item [routerLink]="['/tasks']">
+  <mat-list-item [routerLink]="['/projects']">
     <mat-icon mat-list-icon svgIcon="projects"></mat-icon>
-    <span matLine>首页</span>
+    <span matLine>项目首页</span>
     <span matLine matSubheader>查看我的所有项目</span>
   </mat-list-item>
+  <mat-list-item *ngFor="let p of projecs$ | async" (click)="onPrjClick(p)">
+    <mat-icon mat-list-icon svgIcon="projects"></mat-icon>
+    <span matLine>{{p.name}}</span>
+    <span matLine matSubheader>{{p.desc}}</span>
+  </mat-list-item>
   <h3 matSubheader>日程</h3>
-  <mat-list-item [routerLink]="['/projects']">
+  <mat-list-item [routerLink]="['/mycal/month']">
     <mat-icon mat-list-icon svgIcon="month"></mat-icon>
     <span matLine>月视图</span>
     <span matLine matSubheader>按月查看我的任务</span>
   </mat-list-item>
-  <mat-list-item>
+  <mat-list-item [routerLink]="['/mycal/week']">
     <mat-icon mat-list-icon svgIcon="week"></mat-icon>
     <span matLine>周视图</span>
     <span matLine matSubheader>按周查看我的任务</span>
   </mat-list-item>
-  <mat-list-item>
+  <mat-list-item [routerLink]="['/mycal/day']">
     <mat-icon mat-list-icon [svgIcon]="day"></mat-icon>
     <span matLine>日视图</span>
     <span matLine matSubheader>按日查看我的任务</span>

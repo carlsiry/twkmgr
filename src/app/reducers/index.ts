@@ -5,6 +5,7 @@
  *      - 加入了认证的State和reducer
  *     10.13 - 加入了项目的状态管理
  *     10.14 - 加入了任务列表的状态管理
+ * 2017.10.25 添加处理退出操作的处理器到顶层处理器中
  */
 import { NgModule } from '@angular/core';
 import { StoreModule, combineReducers, ActionReducer } from '@ngrx/store';
@@ -19,6 +20,7 @@ import * as fromProject from './project.reducer';
 import * as fromTaskList from './task-list.reducer';
 import * as fromTask from './task.reducer';
 import * as fromUser from './user.reducer';
+import * as authActions from '../actions/auth.action';
 
 import { compose } from '@ngrx/core/compose';
 import { createSelector } from 'reselect';
@@ -98,7 +100,12 @@ const productionReducers: ActionReducer<State> = combineReducers(reducers);
 const developmentReducers: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers)
 
 export function reducer(state = initialState, action: any): State {
-    return environment.production ? productionReducers(state, action) : developmentReducers(state, action);
+    // 如果捕获到退出信号，返回应用的初始化状态
+    return action.type === authActions.ActionTypes.LOGOUT ?
+        initialState :
+        environment.production ?
+            productionReducers(state, action) :
+            developmentReducers(state, action);
 }
 
 @NgModule({

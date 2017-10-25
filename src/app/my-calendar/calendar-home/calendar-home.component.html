@@ -1,0 +1,46 @@
+
+<mat-card>
+  
+  <!-- 日历上方工具栏：上一个月/周  当前日期 下一个月/周 -->
+  <div class="toolbar">
+    <!-- 左边按钮 -->
+    <button md-icon-button mwlCalendarPreviousView>
+      <!-- mat-48 ： 表示调整到48x48大小 -->
+      <mat-icon class="mat-48">chevron_left</mat-icon>
+    </button>
+    <!-- 当前日期 -->
+    <button md-button mwlCalendarToday>
+      {{viewDate | date: 'yyyy-MM-dd'}}
+    </button>
+    <!-- 右边按钮 -->
+    <button md-icon-button mwlCalendarNextView>
+      <mat-icon class="mat-48">chevron_right</mat-icon>
+    </button>
+  </div>
+
+  <!-- 传入自己定义好的一些事件，viewDate 为传入日历组件的的基准日期 -->
+  <ng-container *ngIf="(events$ | async) as calEvents">
+    <div [ngSwitch]="view$ | async">
+      <!-- 默认是月视图组件 -->
+      <mwl-calendar-month-view *ngSwitchDefault
+        [viewDate]="viewDate"
+        [locale]="'zh'"
+        [events]="calEvents"
+        (eventClicked)="handleEvent($event.event)">
+      </mwl-calendar-month-view>
+      <!-- 周视图 -->
+      <mwl-calendar-week-view *ngSwitchCase="'week'"
+        [viewDate]="viewDate"
+        [locale]="'zh'"
+        (eventClicked)="handleEvent($event.event)">
+      </mwl-calendar-week-view>
+      <!-- 日视图 -->
+      <mwl-calendar-day-view *ngSwitchCase="'day'"
+        [viewDate]="viewDate"
+        [locale]="'zh'"
+        (eventClicked)="handleEvent($event.event)">
+      </mwl-calendar-day-view>
+    </div>
+  </ng-container>
+  
+</mat-card>

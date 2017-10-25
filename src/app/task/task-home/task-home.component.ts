@@ -2,6 +2,7 @@
 /**
  * 2017.10.14 删除写死的数据处理，从状态树中获取数据
  * 2017.10.16 完善了对任务的操作处理函数
+ * 2017.10.25 修改了添加任务列表的错误和获取项目ID的路由方法
  */
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { MatDialog } from '@angular/material';
@@ -37,7 +38,7 @@ export class TaskHomeComponent implements OnInit {
     private store: Store<fromRoot.State>,
     private route: ActivatedRoute,
   ) {
-    this.projectId$ = this.route.paramMap.pluck('id');
+    this.projectId$ = this.route.paramMap.map(p => p.get('id'));
     this.lists$ = this.store.select(fromRoot.getTasksByLists);
   }
 
@@ -83,9 +84,11 @@ export class TaskHomeComponent implements OnInit {
     dialogRef.afterClosed().take(1).filter(_ => _)
       .subscribe(val => this.store.dispatch(new taskActions.UpdateAction({...task, ...val})))
   }
+  // 新建任务列表
   openNewTaskListDialog(ev: Event) {
     const dialog = this.dialog.open(NewTaskListComponent, {data: {title: '新建任务列表'}})
     dialog.afterClosed().take(1).filter(_ => _)
+      .withLatestFrom(this.projectId$, (val, projectId) => ({...val, projectId}))
       .subscribe(result => {
         console.log(result);
         return this.store.dispatch(new actions.AddAction(result))});

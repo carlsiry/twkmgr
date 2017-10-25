@@ -4,6 +4,7 @@
  *  - 创建 认证路由守卫
  * 2017.10.11 下午 逸夫楼 -- Carlsiry
  *  - 根据 认证 的状态来决定是否守卫路由
+ * 2017.10.25 修复路由守卫是否守卫的错误 if (!result)
  */
 import { Injectable } from '@angular/core';
 import { CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
@@ -25,7 +26,7 @@ export class AuthGuardService implements CanActivate {
     return this.store$.select(getAuthState)
       .map(auth => {
         const result = auth.token !== null && auth.token !== undefined;
-        if (result) {
+        if (!result) {
           this.store$.dispatch(go(['/login']));
         }
         return result;

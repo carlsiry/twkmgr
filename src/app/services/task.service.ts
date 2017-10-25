@@ -2,6 +2,7 @@
 /**
  * 2017.10.08 创建 任务的服务 ---Carlsiry
  *    包含 CRUD 任务 等功能
+ * 2017.10.25 添加获取用户所有任务的方法
  */
 
 import { Injectable, Inject } from '@angular/core';
@@ -80,5 +81,10 @@ export class TaskService {
       .mergeMap(tasks => Observable.from(tasks))
       .mergeMap(task => this.move(task.id, targetListId))
       .reduce((tasks: Task[], newTask) => [...tasks, newTask], []);
+  }
+  // 根据用户的ID来 获取 用户的 所有任务
+  getUserTasks(userId: string): Observable<Task[]> {
+    const uri = `${this.config.uri}/${this.domain}`;
+    return this.http.get(uri, {params: {ownerId: userId}}).map(res => res.json() as Task[]);
   }
 }
