@@ -1,7 +1,7 @@
 
 /**
  * 2017.10.13 增加 用于项目的几种呢处理
- * 2017.10.16 修复 邀请用户成功时信号没有处理表的问题
+ * 2017.10.16 修复 邀请用户成功时的信号没有处理表的问题
  */
 import * as actions from '../actions/project.action';
 import { Project } from '../domain/project.model';
@@ -81,6 +81,7 @@ const loadProjects = (state: State, action: Action) => {
 export const getIds = (state: State) => state.ids;
 export const getEntities = (state: State) => state.entities;
 export const getSelectedId = (state: State) => state.selectedId;
+// 测试通过
 export const getAllProjects  = createSelector(getIds, getEntities, (ids, entities) => {
     return ids.map(id => entities[id]); // Project[]
 });

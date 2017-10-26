@@ -22,12 +22,14 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 })
 export class LoginComponent implements OnInit {
 
+  // 视图模型： 格言、登录表单
   quote$: Observable<Quote>;
   loginForm: FormGroup;
 
   constructor(
     private store$: Store<fromRoot.State>
   ) {
+    // 实例化时，从 Store 中订阅 Quote 状态, 发起 加载格言信号
     this.quote$ = this.store$.select(fromRoot.getQuote);
     this.store$.dispatch(new quoteActions.LoadAction(null));
   }
@@ -44,7 +46,7 @@ export class LoginComponent implements OnInit {
     if (!valid) {
       return;
     }
-    // 如果验证没问题
+    // 如果验证没问题, 发起 认证登录信号
     this.store$.dispatch(new authActions.LoginAction(value))
   }
 }

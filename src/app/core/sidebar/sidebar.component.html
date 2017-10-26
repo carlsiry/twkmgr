@@ -1,6 +1,7 @@
 
 <!-- 2017.10.25  把所有的用户项目显示 -->
 <!--            添加跳转对应日历视图的路由 -->
+<!-- 2017.10.26 修复不能正确显示 项目列表的问题 -->
 <mat-nav-list (click)="onClickNav()">
   <h3 matSubheader>项目</h3>
   <mat-list-item [routerLink]="['/projects']">
@@ -8,10 +9,10 @@
     <span matLine>项目首页</span>
     <span matLine matSubheader>查看我的所有项目</span>
   </mat-list-item>
-  <mat-list-item *ngFor="let p of projecs$ | async" (click)="onPrjClick(p)">
+  <mat-list-item *ngFor="let prj of projects$ | async" (click)="onPrjClick(prj)">
     <mat-icon mat-list-icon svgIcon="projects"></mat-icon>
-    <span matLine>{{p.name}}</span>
-    <span matLine matSubheader>{{p.desc}}</span>
+    <span matLine>{{prj.name}}</span>
+    <span matLine matSubheader>{{prj.desc}}</span>
   </mat-list-item>
   <h3 matSubheader>日程</h3>
   <mat-list-item [routerLink]="['/mycal/month']">

@@ -3,7 +3,9 @@
   2017.10.11 修改格言名句使用服务动态的语句和图片
   2017.10.16 去除了登录表单邮箱的后缀
  -->
+ <!-- 使用响应式表单 -->
 <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm, $event)">
+  <!-- 左侧登录表单：邮箱、密码 -->
   <mat-card class="login-form__card">
       <mat-card-header>
         <mat-card-title>登录</mat-card-title>
@@ -24,6 +26,7 @@
         <p class="login-form__tip">忘记密码？<a href="#">找回</a></p>
       </mat-card-actions>
   </mat-card>   
+  <!-- 右侧格言卡片 -->
   <mat-card class="login-form__card">
     <mat-card-header>
       <mat-card-title>团队精神</mat-card-title>
