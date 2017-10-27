@@ -1,6 +1,7 @@
 
 /**
  * 2017.10.16 增加了新增任务的表单
+ * 2017.10.27 修复新建任务和更新任务字段不匹配的问题
  */
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
@@ -39,15 +40,28 @@ export class NewTaskComponent implements OnInit {
 
   ngOnInit() {
     this.title = this.data.title;
-    this.form = this.fb.group({
-      desc: [this.data.task ? this.data.task.desc : '', Validators.required],
-      priority: [this.data.task ? this.data.task.priority : 3, Validators.required],
-      owner: [this.data.task ? [this.data.task.owner] : [this.data.owner]],
-      followers: [this.data.task ? [this.data.task.participants] : []],
-      dueDate: [this.data.task ? this.data.task.duedate : ''],
-      reminder: [this.data.task ? this.data.task.reminder : ''],
-      remark: [this.data.task ? this.data.task.remark : ''],
-    })
+    console.log(this.data.task);
+    if (this.data.task) {
+      this.form = this.fb.group({
+        desc: [ this.data.task.desc, Validators.required],
+        priority: [this.data.task.priority, Validators.required],
+        owner: [[this.data.task.owner]],
+        followers: [this.data.task.participants ? this.data.task.participants : []],
+        dueDate: [this.data.task.duedate ? this.data.task.duedate : ''],
+        reminder: [this.data.task.reminder ? this.data.task.reminder : ''],
+        remark: [this.data.task.remark ? this.data.task.remark : ''],
+      });
+    } else {
+      this.form = this.fb.group({
+        desc: ['', Validators.required],
+        priority: [3, Validators.required],
+        owner: [[this.data.owner]],
+        followers: [[]],
+        dueDate: [''],
+        reminder: [''],
+        remark: [''],
+      });
+    }
   }
 
   onSubmit(ev: Event, {value, valid}) {
@@ -56,10 +70,14 @@ export class NewTaskComponent implements OnInit {
       return;
     }
     this.dialogRef.close({
-      ...value,
+      desc: value.desc,
+      priority: value.priority,
+      dueDate: value.dueDate,
+      reminder: value.reminder,
+      remark: value.remark,
       ownerId: value.owner.length > 0 ? value.owner[0].id : null,
-      particippants: value.followers.map(f => f.id)
-    })
+      participantIds: value.followers.map(f => f.id)
+    });
   }
 
 }

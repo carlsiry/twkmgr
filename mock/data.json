@@ -49,9 +49,9 @@
     },
     {
       "id": "Hya1moGb-",
-      "name": "某某公司 ERP 系统",
+      "name": "某某公司ERP系统",
       "desc": "为某某公司开发的定制化 ERP 系统",
-      "coverImg": "assets/img/covers/24.jpg",
+      "coverImg": "assets/img/covers/2.jpg",
       "members": [
         "BkkDvwee-",
         "37489e0c-df34-c261-71c4-ce75357e3035"
@@ -61,6 +61,15 @@
         "BkWpk7jGZb",
         "H1fTyXjMWW"
       ]
+    },
+    {
+      "name": "我自己的测试",
+      "desc": "很好很强大的啊",
+      "coverImg": "assets/img/covers/12.jpg",
+      "members": [
+        "BkkDvwee-"
+      ],
+      "id": "BJLm1FJRZ"
     }
   ],
   "taskLists": [
@@ -77,28 +86,32 @@
       "id": "SkG3Ba6Tgb"
     },
     {
-      "name": "待办",
+      "name": "erp-1",
       "projectId": "Hya1moGb-",
       "order": 1,
       "id": "BylTyXiM-b"
     },
     {
-      "name": "进行中",
+      "name": "erp-2",
       "projectId": "Hya1moGb-",
       "order": 2,
       "id": "BkWpk7jGZb"
     },
     {
-      "name": "已完成",
-      "projectId": "Hya1moGb-",
-      "order": 3,
-      "id": "H1fTyXjMWW"
+      "name": "第一个任务列表",
+      "projectId": "BJLm1FJRZ",
+      "id": "SJ2VyFJCW"
+    },
+    {
+      "name": "第二个任务列表",
+      "projectId": "BJLm1FJRZ",
+      "id": "ryISkKyAb"
     }
   ],
   "tasks": [
     {
       "desc": "吃晚餐",
-      "taskListId": "BkenST66lb",
+      "taskListId": "SkG3Ba6Tgb",
       "ownerId": "37489e0c-df34-c261-71c4-ce75357e3035",
       "completed": true,
       "participantIds": [
@@ -132,7 +145,7 @@
     {
       "id": "3",
       "desc": "什么情况啊",
-      "taskListId": "BkenST66lb",
+      "taskListId": "SkG3Ba6Tgb",
       "ownerId": "BkkDvwee-",
       "completed": false,
       "participantIds": [],
@@ -145,7 +158,7 @@
     {
       "taskListId": "BylTyXiM-b",
       "desc": "登录鉴权过程中需携带 token 访问 API",
-      "completed": false,
+      "completed": true,
       "ownerId": "BkkDvwee-",
       "participantIds": [],
       "dueDate": "2017-07-03T16:00:00.000Z",
@@ -156,12 +169,14 @@
       "id": "4"
     },
     {
-      "taskListId": "BkWpk7jGZb",
-      "desc": "增加统计报表功能",
-      "completed": false,
+      "taskListId": "BylTyXiM-b",
+      "desc": "增加统计报表功能me",
+      "completed": true,
       "ownerId": "37489e0c-df34-c261-71c4-ce75357e3035",
-      "participantIds": [],
-      "dueDate": "2017-07-25T16:00:00.000Z",
+      "participantIds": [
+        "37489e0c-df34-c261-71c4-ce75357e3035"
+      ],
+      "dueDate": null,
       "priority": 1,
       "remark": "",
       "reminder": "2017-07-17T16:00:00.000Z",
@@ -171,7 +186,7 @@
     {
       "taskListId": "BylTyXiM-b",
       "desc": "首页 banner 增加 2px 的 margin",
-      "completed": false,
+      "completed": true,
       "ownerId": "37489e0c-df34-c261-71c4-ce75357e3035",
       "participantIds": [
         "BkkDvwee-"
@@ -184,9 +199,9 @@
       "id": "6"
     },
     {
-      "taskListId": "BkWpk7jGZb",
+      "taskListId": "BylTyXiM-b",
       "desc": "库存管理 -- 出库操作 API",
-      "completed": false,
+      "completed": true,
       "ownerId": "BkkDvwee-",
       "participantIds": [
         "37489e0c-df34-c261-71c4-ce75357e3035"
@@ -199,142 +214,127 @@
       "id": "7"
     },
     {
-      "taskListId": "H1fTyXjMWW",
-      "desc": "用户可以签入签出设备",
-      "completed": true,
-      "ownerId": "37489e0c-df34-c261-71c4-ce75357e3035",
-      "participantIds": [],
-      "dueDate": "2017-05-20T16:00:00.000Z",
-      "priority": 1,
-      "remark": "",
-      "reminder": "2017-05-20T16:00:00.000Z",
-      "createDate": "2017-05-24T06:16:24.575Z",
-      "id": "8"
-    },
-    {
-      "taskListId": "BkWpk7jGZb",
-      "desc": "什么情况啊？",
-      "completed": false,
-      "ownerId": "37489e0c-df34-c261-71c4-ce75357e3035",
-      "participantIds": [],
-      "dueDate": null,
+      "desc": "奢靡吧",
       "priority": 3,
-      "remark": "",
-      "reminder": null,
-      "createDate": "2017-06-15T12:03:36.290Z",
-      "id": "9"
-    },
-    {
-      "desc": "新的任务啊  啊",
-      "priority": 1,
-      "owner": [
-        {
-          "password": "123",
-          "name": "Carl",
-          "avatar": "avatars:svg-3",
-          "email": "carl@163.com",
-          "id": "chen",
-          "projectIds": [],
-          "roleIds": [
-            1
-          ]
-        }
-      ],
-      "followers": [
-        {
-          "password": "Ls123456",
-          "name": "李四",
-          "avatar": "avatars:svg-2",
-          "email": "lisi@163.com",
-          "id": "BkkDvwee-",
-          "projectIds": [
-            "Sk2HaTagb",
-            "Hya1moGb-"
-          ],
-          "roleIds": [
-            1
-          ]
-        },
-        {
-          "password": "wp123456",
-          "name": "王芃",
-          "avatar": "avatars:svg-1",
-          "email": "wpcfan@163.com",
-          "id": "37489e0c-df34-c261-71c4-ce75357e3035",
-          "projectIds": [
-            "Sk2HaTagb",
-            "Sk2HaTagb",
-            "Hya1moGb-",
-            "Sk2HaTagb",
-            "Sk2HaTagb",
-            "Hya1moGb-",
-            "Hy3L7K5FW",
-            "S1XDmtcF-"
-          ],
-          "roleIds": [
-            0,
-            1,
-            2
-          ]
-        }
-      ],
       "dueDate": "",
       "reminder": "",
       "remark": "",
-      "ownerId": "chen",
-      "particippants": [
-        "BkkDvwee-",
+      "ownerId": "BkkDvwee-",
+      "participantIds": [
+        "37489e0c-df34-c261-71c4-ce75357e3035"
+      ],
+      "taskListId": "BkenST66lb",
+      "completed": false,
+      "createDate": "2017-10-26T13:10:20.895Z",
+      "id": "B1BaALJCZ"
+    },
+    {
+      "desc": "fsfsaf",
+      "priority": 3,
+      "taskListId": "SkG3Ba6Tgb",
+      "ownerId": "BkkDvwee-",
+      "completed": false,
+      "createDate": "2017-10-26T13:21:08.731Z",
+      "participantIds": [
+        "37489e0c-df34-c261-71c4-ce75357e3035"
+      ],
+      "id": "r1arZPyC-",
+      "reminder": null,
+      "dueDate": null,
+      "remark": null
+    },
+    {
+      "desc": "很好很强",
+      "priority": 1,
+      "dueDate": null,
+      "reminder": "2017-10-29T16:00:00.000Z",
+      "remark": "",
+      "ownerId": "BkkDvwee-",
+      "participantIds": [],
+      "taskListId": "BylTyXiM-b",
+      "completed": true,
+      "createDate": "2017-10-26T14:28:31.988Z",
+      "id": "BJuGbd1R-"
+    },
+    {
+      "desc": "testjkl",
+      "priority": 3,
+      "taskListId": "BylTyXiM-b",
+      "ownerId": "BkkDvwee-",
+      "completed": true,
+      "createDate": "2017-10-26T14:28:36.032Z",
+      "participantIds": [],
+      "id": "Hy3zZu1RZ"
+    },
+    {
+      "desc": "待办",
+      "priority": 3,
+      "dueDate": "",
+      "reminder": "2017-10-12T16:00:00.000Z",
+      "remark": "",
+      "ownerId": "37489e0c-df34-c261-71c4-ce75357e3035",
+      "participantIds": [
         "37489e0c-df34-c261-71c4-ce75357e3035"
       ],
       "taskListId": "BkWpk7jGZb",
       "completed": false,
-      "createDate": "2017-10-16T01:23:01.323Z",
-      "id": "BJTx9KZaZ"
-    }
-  ],
-  "taskHistory": [
-    {
-      "taskId": "5",
-      "operator": {
-        "id": "37489e0c-df34-c261-71c4-ce75357e3035",
-        "name": "王芃",
-        "avatar": "avatars:svg-1",
-        "email": "wpcfan@163.com"
-      },
-      "operation": {
-        "payload": "增加统计报表功能",
-        "type": "createTask"
-      },
-      "date": "2017-05-24T06:11:48.513Z",
-      "id": "ryoklWH9-"
+      "createDate": "2017-10-26T14:49:06.160Z",
+      "id": "S15yIuyRZ"
     },
     {
-      "taskId": "5",
-      "operator": {
-        "id": "37489e0c-df34-c261-71c4-ce75357e3035",
-        "email": "wpcfan@163.com",
-        "name": "王芃",
-        "avatar": "avatars:svg-1"
-      },
-      "operation": {
-        "type": "completeTask"
-      },
-      "date": "2017-09-18T06:53:25.306Z",
-      "id": "SkpwpkpqW"
+      "desc": "sersjflks",
+      "priority": 3,
+      "dueDate": "",
+      "reminder": "",
+      "remark": "",
+      "ownerId": "BkkDvwee-",
+      "participantIds": [
+        "37489e0c-df34-c261-71c4-ce75357e3035"
+      ],
+      "taskListId": "BkenST66lb",
+      "completed": false,
+      "createDate": "2017-10-26T14:50:46.985Z",
+      "id": "ryy8UukAW"
     },
     {
-      "taskId": "5",
-      "operator": {
-        "id": "37489e0c-df34-c261-71c4-ce75357e3035",
-        "email": "wpcfan@163.com",
-        "name": "王芃",
-        "avatar": "avatars:svg-1"
-      },
-      "operation": {
-        "type": "recreateTask"
-      },
-      "date": "2017-09-18T06:53:26.420Z",
-      "id": "BJAwpkacb"
+      "desc": "fasfdas",
+      "priority": 1,
+      "taskListId": "BkWpk7jGZb",
+      "ownerId": "BkkDvwee-",
+      "completed": false,
+      "createDate": "2017-10-26T15:23:20.542Z",
+      "participantIds": [
+        "37489e0c-df34-c261-71c4-ce75357e3035"
+      ],
+      "id": "rJbx0dkC-",
+      "reminder": "",
+      "dueDate": "",
+      "remark": ""
+    },
+    {
+      "desc": "01",
+      "priority": 1,
+      "taskListId": "SJ2VyFJCW",
+      "ownerId": "BkkDvwee-",
+      "completed": false,
+      "createDate": "2017-10-26T15:29:11.572Z",
+      "participantIds": [
+        "37489e0c-df34-c261-71c4-ce75357e3035"
+      ],
+      "id": "ryeL1FyRZ",
+      "reminder": null,
+      "dueDate": null,
+      "remark": null
+    },
+    {
+      "desc": "02",
+      "priority": 3,
+      "taskListId": "SJ2VyFJCW",
+      "ownerId": "BkkDvwee-",
+      "completed": false,
+      "createDate": "2017-10-26T15:29:16.340Z",
+      "participantIds": [],
+      "id": "rkEIkYJAb"
     }
   ],
   "quotes": [

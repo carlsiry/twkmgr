@@ -53,11 +53,12 @@ export class TaskEffects {
             .map( t => new actions.DeleteSuccessAction(t))
             .catch(err => Observable.of(new actions.DeleteFailAction(JSON.stringify(err))))
         );
+    // 完成任务的流程
     @Effect()
     complete$: Observable<Action> = this.actions$
         .ofType(actions.ActionTypes.COMPLETE)
         .map(toPayload)
-        .switchMap( task => this.service$.del(task)
+        .switchMap( task => this.service$.complete(task)
             .map( t => new actions.CompleteSuccessAction(t))
             .catch(err => Observable.of(new actions.CompleteFailAction(JSON.stringify(err))))
         );

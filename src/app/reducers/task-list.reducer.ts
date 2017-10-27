@@ -1,7 +1,10 @@
 
 /**
  * 2017.10.14 增加 用于任务列表的几种处理
+ * 2017.10.26 修复切换项目时加载多个项目的任务列表
  */
+
+// #region importer
 import { Action } from '@ngrx/store';
 import { createSelector } from 'reselect';
 import * as actions from '../actions/task-list.action';
@@ -10,7 +13,7 @@ import * as _ from 'lodash';
 import { ActionTypes } from '../actions/task-list.action';
 import { Project } from '../domain/project.model';
 import { TaskList } from '../domain/task-list.model';
-
+// #endregion
 export interface State {
     ids: string[];
     entities: {[id: string]: TaskList};
@@ -22,6 +25,7 @@ export const initialState: State = {
     entities: {},
     selectedIds: [],
 };
+// 列表的操作信号类型、项目的操作信号类型
 export const actionTypes = actions.ActionTypes;
 export const prjActionTypes = prjActions.ActionTypes;
 export function reducer(state = initialState, action: actions.Actions ): State {
@@ -98,15 +102,17 @@ const delTaskList = (state: State, action: Action) => {
     const newSelectedIds = state.selectedIds.filter(id => id !== taskList.id);
     return {...state, ids: newIds, entities: newEntities, selectedIds: newSelectedIds};
 }
+// 加载项目的任务列表
 const loadTaskLists = (state: State, action: Action) => {
     const taskLists = <TaskList[]>action.payload;
-    console.log('loadTaskLists ...');
-    console.log(taskLists);
-    const incomingIds = taskLists.map(p => p.id);
-    const incomingEntities = _.chain(taskLists).keyBy('id').mapValues(o => o).value();
-    const diffIds = _.difference(incomingIds, state.ids);
-    const newEntities = diffIds.reduce((entities, id) => ({...entities, [id]: incomingEntities[id]}), {});
-    return {...state, ids: [...state.ids, ...diffIds], entities: {...state.entities, ...newEntities}};
+    console.log('loadTaskLists ...', taskLists);
+    // const incomingIds = taskLists.map(p => p.id);
+    // const incomingEntities = _.chain(taskLists).keyBy('id').mapValues(o => o).value();
+    // const diffIds = _.difference(incomingIds, state.ids);
+    // const newEntities = diffIds.reduce((entities, id) => ({...entities, [id]: incomingEntities[id]}), {});
+    const newIds = taskLists.map(tl => tl.id);
+    const newEntities = _.chain(taskLists).keyBy('id').mapValues(o => o).value();
+    return {...state, ids: newIds, entities: <{[id: string]: TaskList}>newEntities};
 }
 
 export const getIds = (state: State) => state.ids;

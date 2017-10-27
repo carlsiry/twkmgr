@@ -3,6 +3,7 @@
  * 2017.10.09 完善了增加项目和修改项目的具体功能实现
  *  1. 增加项目表单
  *  2. 加入表单提交功能实现
+ * 2017.10.26 修复快速天际任务可以为空任务的问题
  */
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
@@ -50,7 +51,6 @@ export class NewPorjectComponent implements OnInit {
     if (!valid) {
       return;
     }
-    console.log(value);
     this.dialogRef.close(value);
   }
   // 把修改项目的图片地址改为缩略图的链接地址

@@ -3,7 +3,9 @@
  * 2017.10.14 删除写死的数据处理，从状态树中获取数据
  * 2017.10.16 完善了对任务的操作处理函数
  * 2017.10.25 修改了添加任务列表的错误和获取项目ID的路由方法
+ * 2017.10.26 修复移动列表内所有任务到另一列表时订阅持续问题
  */
+// #region importer
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { NewTaskComponent } from '../new-task/new-task.component';
@@ -18,6 +20,7 @@ import { Observable } from 'rxjs/Observable';
 import { TaskList } from '../../domain/task-list.model';
 import * as actions from '../../actions/task-list.action';
 import * as taskActions from '../../actions/task.action';
+// #endregion
 
 @Component({
   selector: 'app-task-home',
@@ -61,7 +64,7 @@ export class TaskHomeComponent implements OnInit {
   }
   // 打开移动所有任务到其他列表的对话框
   openMoveAllTaskDialog(list) {
-    this.lists$.map(l => l.filter(n => n.id !== list.id))
+    this.lists$.map(l => l.filter(n => n.id !== list.id)).take(1)
     .map(li => this.dialog.open(CopyTaskComponent, {data: {lists: li}}))
     .switchMap(dialogRef => dialogRef.afterClosed().take(1).filter(n => n))
     .subscribe((val: string) => this.store.dispatch(new taskActions.MoveAllAction({
@@ -79,6 +82,7 @@ export class TaskHomeComponent implements OnInit {
     dialogRef.afterClosed().take(1).filter(_ => _)
       .subscribe(result => this.store.dispatch(new actions.DeleteAction(list)));
   }
+  // 更新任务
   openUpdateTaskDialog(task) {
     const dialogRef = this.dialog.open(NewTaskComponent, {data: {title: '修改任务', task}})
     dialogRef.afterClosed().take(1).filter(_ => _)
@@ -93,7 +97,10 @@ export class TaskHomeComponent implements OnInit {
         console.log(result);
         return this.store.dispatch(new actions.AddAction(result))});
   }
-
+  updateTaskCompletedState(task) {
+    this.store.dispatch(new taskActions.CompleteAction({...task, completed: !task.completed}));
+  }
+  // 快速增加任务
   addQuickTask(desc: string, list) {
     const user$ = this.store.select(fromRoot.getAuthState).map(auth => auth.user);
     user$.take(1)
@@ -101,7 +108,7 @@ export class TaskHomeComponent implements OnInit {
         desc,
         priority: 3,
         taskListId: list.id,
-        owerId: user.id,
+        ownerId: user.id,
         completed: false,
         createDate: new Date(),
         participantIds: []

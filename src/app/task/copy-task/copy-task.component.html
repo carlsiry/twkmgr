@@ -1,11 +1,14 @@
 
 <!-- 2017.10.16 加入选择列表的表单 -->
+<!-- 2017.10.26 修复选择列表下拉选择框过宽问题 -->
 <form [formGroup]="form" (ngSubmit)="onSubmit($event, form)">
     <h2 matDialogTitle>移动本列表所有内容：</h2>
     <div mat-dialog-content>
-      <mat-select placeholder="请选择目标列表" class="field-full-width" formControlName="targetListId">
-        <mat-option *ngFor="let list of lists" [value]="list.id">{{list.name}}</mat-option>
-      </mat-select>
+      <mat-form-field>
+        <mat-select placeholder="请选择目标列表" class="field-full-width" formControlName="targetListId">
+          <mat-option *ngFor="let list of lists" [value]="list.id">{{list.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div mat-dialog-actions>
       <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">保存</button>

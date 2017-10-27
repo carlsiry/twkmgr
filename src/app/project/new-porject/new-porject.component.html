@@ -2,6 +2,7 @@
 <!-- 2017.10.08
   增加项目图片选择列表组件表单
   确认按钮的提交方式修改为表单的默认提交方式
+  2017.10.26 给登录按钮绑定了校验逻辑：为空不能提交
  -->
 <form [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
   <h2 matDialogTitle>{{title}}</h2>
@@ -21,7 +22,7 @@
       formControlName="coverImg"></app-image-list-select>
   </div>
   <div mat-dialog-actions>
-    <button type="button" mat-raised-button color="primary" type="submit">保存</button>
+    <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">保存{{form.valid}}</button>
     <button type="button" mat-raised-button matDialogClose>关闭</button>
   </div>
 </form>

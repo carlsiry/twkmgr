@@ -3,6 +3,7 @@
  * 2017.10.08 创建 任务的服务 ---Carlsiry
  *    包含 CRUD 任务 等功能
  * 2017.10.25 添加获取用户所有任务的方法
+ * 2017.10.26 修复不能正确更新任务的问题（拥有者字段命名出错）
  */
 
 import { Injectable, Inject } from '@angular/core';
@@ -35,7 +36,7 @@ export class TaskService {
       priority: task.priority,
       reminder: task.reminder,
       dueDate: task.dueDate,
-      owerId: task.owerId,
+      ownerId: task.ownerId,
       participantIds: task.participantIds,
       remark: task.remark,
     };

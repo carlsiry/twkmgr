@@ -6,6 +6,7 @@
  *     10.13 - 加入了项目的状态管理
  *     10.14 - 加入了任务列表的状态管理
  * 2017.10.25 添加处理退出操作的处理器到顶层处理器中
+ * 2017.10.26 修复获取带用户的任务列表时不能正确获取用户所有者信息的问题
  */
 import { NgModule } from '@angular/core';
 import { StoreModule, combineReducers, ActionReducer } from '@ngrx/store';
@@ -27,6 +28,7 @@ import { createSelector } from 'reselect';
 
 import { environment } from '../../environments/environment';
 import { Auth } from '../domain/auth.model';
+import { go } from '@ngrx/router-store';
 
 // 应用级的状态，由子状态构成
 export interface State {
@@ -58,7 +60,7 @@ export const getTasksWithOwners = createSelector(getTask, getUserEntities, (task
     return tasks.map(task => {
         return {
             ...task,
-            owner: userEntities[task.owerId],
+            owner: userEntities[task.ownerId],
             participants: task.participantIds.map(id => userEntities[id])
         };
     });
@@ -101,9 +103,11 @@ const developmentReducers: ActionReducer<State> = compose(storeFreeze, combineRe
 
 export function reducer(state = initialState, action: any): State {
     // 如果捕获到退出信号，返回应用的初始化状态
-    return action.type === authActions.ActionTypes.LOGOUT ?
-        initialState :
-        environment.production ?
+    if (action.type === authActions.ActionTypes.LOGOUT) {
+        go(['/']);
+        return initialState;
+    }
+    return environment.production ?
             productionReducers(state, action) :
             developmentReducers(state, action);
 }

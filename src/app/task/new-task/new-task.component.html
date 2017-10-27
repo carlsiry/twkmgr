@@ -3,29 +3,36 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit($event, form)">
     <h2 matDialogTitle>{{title}}</h2>
     <div mat-dialog-content>
+      <!-- 任务秒速 -->
       <mat-form-field class="field-full-width">
         <input matInput placeholder="任务描述" type="text" formControlName="desc">
       </mat-form-field>
+      <!-- 任务权重 -->
       <mat-radio-group formControlName="priority">
         <mat-radio-button *ngFor="let priority of priorities" [value]="priority.value">
           {{priority.label}} </mat-radio-button>
       </mat-radio-group>
+      <!-- 任务执行者 -->
       <div class="full-width">
         <app-chips-list [label]="'更改执行者'" [multiple]="false" formControlName="owner"></app-chips-list>
       </div>
+      <!-- 任务截止时间 -->
       <mat-form-field class="field-full-width">
         <input matInput [matDatepicker]="dueDatepicker" placeholder="任务截止日期" formControlName="dueDate">
         <mat-datepicker-toggle matSuffix [for]="dueDatepicker"></mat-datepicker-toggle>
       </mat-form-field>
       <mat-datepicker #dueDatepicker></mat-datepicker>
+      <!-- 任务提醒时间 -->
       <mat-form-field class="field-full-width">
         <input matInput [matDatepicker]="reminderDatepicker" placeholder="任务提醒日期" formControlName="reminder">
         <mat-datepicker-toggle matSuffix [for]="reminderDatepicker"></mat-datepicker-toggle>
       </mat-form-field>
       <mat-datepicker #reminderDatepicker></mat-datepicker>
+      <!-- 任务参与者 -->
       <div class="full-width">
         <app-chips-list [label]="'更改参与者'" [multiple]="true" formControlName="followers"></app-chips-list>
       </div>
+      <!-- 任务备注 -->
       <div class="full-width">
         <textarea madInput placeholder="备注" formControlName="remark"></textarea>
       </div>

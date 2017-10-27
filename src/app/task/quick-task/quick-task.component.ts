@@ -1,3 +1,7 @@
+
+/**
+ * 2017.10.26 修复快速新建任务可以为空的问题
+ */
 import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/core';
 
 @Component({
@@ -17,7 +21,9 @@ export class QuickTaskComponent implements OnInit {
 
   @HostListener('keyup.enter')
   onClickSendQuickTask() {
-    this.quickTask.emit(this.desc);
+    if (this.desc) {
+      this.quickTask.emit(this.desc);
+    }
     this.desc = '';
   }
 
